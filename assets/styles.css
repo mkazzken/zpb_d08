@@ -260,32 +260,79 @@ td, th {
     }
 }
 
+
 /*=============== LANGUAGE SWITCHER ===============*/
 .language-switcher {
     position: fixed;
-    top: 15px;
-    right: 20px;
+    top: 0;
+    right: 0;
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
     z-index: 1100;
 }
-
-.language-switcher .btn {
-    width: auto;
-    min-width: 80px;
-    padding: 8px 12px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background: #fff;
-    font-size: 14px;
-    color: #2b2b2b;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+.language-switcher .btn.dropdown-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-width: 120px;
+    padding: 0 clamp(16px, 3vw, 32px) !important;
+    border: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    font-size: 18px;
+    line-height: 1.1;
+    color: var(--text-color);
+    transition: none;
+    box-shadow: none !important;
 }
-
-.language-switcher .btn:hover {
-    background: #f6f6f6;
+.language-switcher .btn.dropdown-toggle:hover,
+.language-switcher .btn.dropdown-toggle:focus,
+.language-switcher .btn.dropdown-toggle:focus-visible,
+.language-switcher .btn.dropdown-toggle:active,
+.language-switcher .btn.dropdown-toggle.show {
+    background: transparent !important;
+    color: var(--text-color) !important;
+    outline: none;
+    box-shadow: none !important;
 }
-
+/* Add custom dropdown arrow */
+.language-switcher .dropdown-toggle::after {
+    display: inline-block;
+    margin-left: 8px;
+    content: "";
+    border: solid var(--text-color);
+    border-width: 0 2px 2px 0;
+    padding: 3px;
+    transform: rotate(45deg);
+    transition: transform 0.2s ease;
+}
+.language-switcher .dropdown-toggle.show::after {
+    transform: rotate(-135deg);
+}
 .language-switcher .dropdown-menu {
-    border: 1px solid #ddd;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 0;
+    margin-top: 0 !important;
+    padding: 0;
+    min-width: 120px;
+}
+.language-switcher .dropdown-item {
+    padding: 12px clamp(16px, 3vw, 32px);
+    font-size: 16px;
+    color: var(--text-color);
+    background: #fff;
+    border: none;
+    transition: background-color 0.2s ease;
+}
+.language-switcher .dropdown-item:hover,
+.language-switcher .dropdown-item:focus {
+    background: #f5f5f5;
+    color: var(--text-color);
+}
+.language-switcher .dropdown-item:active {
+    background: #f5f5f5;
+    color: var(--text-color);
 }
