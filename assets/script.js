@@ -1,7 +1,8 @@
 // Table configuration
 const tables = [
     { id: 'dsoTable', cardId: 'card-dsoTable', name: 'ZBP_D08', jsonPath: './data/zbp_d08.json' },
-    { id: 'dsoTable2', cardId: 'card-dsoTable2', name: 'ZBP_TEST1', jsonPath: './data/zbp_test1.json' }
+    { id: 'dsoTable2', cardId: 'card-dsoTable2', name: 'ZBP_TEST1', jsonPath: './data/zbp_test1.json' },
+    { id: 'myTable', cardId: 'card-dsoTable3', name: 'ZBP_TEST2', jsonPath: './data/zbp_test.json'}
 ];
 
 // Update breadcrumb based on selected table

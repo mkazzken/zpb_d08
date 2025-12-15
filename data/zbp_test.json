@@ -2,97 +2,97 @@
   {
     "field": "ZBPDATYPE",
     "description": "Тип данных /BIC/MZBPDATYPE",
-    "value_example": "DT_3 — Оценка",
+    "value_example": "DT_7 — Прогноз",
     "notes": ""
   },
   {
     "field": "ZBPMETD",
     "description": "Метод планирования",
-    "value_example": "1M",
-    "notes": "Базовый план"
+    "value_example": "3M",
+    "notes": "Корректирующий план"
   },
   {
     "field": "ZPORTFCOM",
     "description": "Компания второго уровня, которая заполняет форму прогнозного баланса",
-    "value_example": "KMG_EP",
+    "value_example": "KMG_OP",
     "notes": "пример значения из справочника"
   },
   {
     "field": "ZBPVERS",
     "description": "Версия данных",
-    "value_example": "ACTUAL",
+    "value_example": "FORECAST",
     "notes": ""
   },
   {
     "field": "ZBPPER",
     "description": "Период",
-    "value_example": "#",
+    "value_example": "@",
     "notes": "служебное значение"
   },
   {
     "field": "ZBPTIME",
     "description": "Отчётный период",
-    "value_example": "03.2025",
+    "value_example": "12.2025",
     "notes": ""
   },
   {
     "field": "ZBPACCT",
     "description": "Счёт",
-    "value_example": "401010",
+    "value_example": "501020",
     "notes": "пример счёта из /BIC/HZBPACCT"
   },
   {
     "field": "ZBPBUSACT",
     "description": "Business Activity",
-    "value_example": "#",
+    "value_example": "SALES",
     "notes": ""
   },
   {
     "field": "ZBPSU",
     "description": "Структурное подразделение Фонда",
-    "value_example": "PC",
+    "value_example": "HQ",
     "notes": "константа"
   },
   {
     "field": "ZBPSOURCE",
     "description": "Источник данных",
-    "value_example": "MANUAL",
+    "value_example": "SYSTEM",
     "notes": "константа"
   },
   {
     "field": "ZBPPOLIT",
     "description": "Тип политики",
-    "value_example": "POL_FU",
+    "value_example": "POL_BA",
     "notes": ""
   },
   {
     "field": "ZBPREP",
     "description": "Признак отчётности",
-    "value_example": "QUARTERLY",
+    "value_example": "MONTHLY",
     "notes": ""
   },
   {
     "field": "ZBPCUR",
     "description": "Валюта",
-    "value_example": "KZT",
+    "value_example": "USD",
     "notes": ""
   },
   {
     "field": "ZBPTTYPE",
     "description": "Тип суммы",
-    "value_example": "PLAN",
+    "value_example": "ACTUAL",
     "notes": ""
   },
   {
     "field": "ZBPTXT1",
     "description": "Описание",
-    "value_example": "Прогноз доходов за период",
+    "value_example": "Прогноз расходов за период",
     "notes": ""
   },
   {
     "field": "ZBPSUM",
     "description": "Сумма",
-    "value_example": "125000000",
-    "notes": "в KZT"
+    "value_example": "98000000",
+    "notes": "в USD"
   }
 ]
