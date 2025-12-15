@@ -1,6 +1,33 @@
+// Table configuration
+const tables = [
+    { id: 'dsoTable', cardId: 'card-dsoTable', name: 'ZBP_D08', jsonPath: './data/zbp_d08.json' },
+    { id: 'dsoTable2', cardId: 'card-dsoTable2', name: 'ZBP_TEST1', jsonPath: './data/zbp_test1.json' }
+];
+
+// Function to update breadcrumb based on selected table
+function updateBreadcrumb(tableName = '') {
+    const breadcrumb = document.getElementById('breadcrumb');
+    if (!breadcrumb) return;
+
+    breadcrumb.innerHTML = `
+        <li class="breadcrumb-item"><a href="https://sk.kz/">Главная</a></li>
+        <li class="breadcrumb-item${tableName ? '' : ' active'}" ${tableName ? '' : 'aria-current="page"'}>${tableName ? '<a href="#" id="breadcrumb-doc-link">Документация API</a>' : 'Документация API'}</li>
+        ${tableName ? `<li class="breadcrumb-item active" aria-current="page">${tableName}</li>` : ''}
+    `;
+
+    // Allow returning to the start (list view) without page reload
+    const docLink = document.getElementById('breadcrumb-doc-link');
+    if (docLink) {
+        docLink.addEventListener('click', (event) => {
+            event.preventDefault();
+            showList();
+        });
+    }
+}
+
 // Function to load JSON data for a table
 function loadTableData(tableId, jsonPath) {
-    fetch(jsonPath)
+    return fetch(jsonPath)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -14,10 +41,8 @@ function loadTableData(tableId, jsonPath) {
                 return;
             }
             
-            // Clear existing content
             tbody.innerHTML = '';
             
-            // Populate table with data
             data.forEach(item => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
@@ -46,9 +71,50 @@ function loadTableData(tableId, jsonPath) {
         });
 }
 
+// Show one table card and hide the others
+function showTable(cardId) {
+    tables.forEach(({ cardId: cId }) => {
+        const cardEl = document.getElementById(cId);
+        if (!cardEl) return;
+        if (cardId && cId === cardId) {
+            cardEl.classList.remove('d-none');
+        } else {
+            cardEl.classList.add('d-none');
+        }
+    });
+}
+
+// Show only the list (hide all tables) and reset breadcrumb
+function showList() {
+    showTable(null);
+    updateBreadcrumb();
+}
+
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Load data for both tables
-    loadTableData('dsoTable', './data/zbp_d08.json');
-    loadTableData('dsoTable2', './data/zbp_test1.json');
+    // Set default breadcrumb
+    updateBreadcrumb();
+
+    // Set up table list click handling
+    const list = document.getElementById('tableList');
+    if (list) {
+        list.addEventListener('click', (event) => {
+            const item = event.target.closest('[data-table-id]');
+            if (!item) return;
+
+            const tableId = item.getAttribute('data-table-id');
+            const config = tables.find(t => t.id === tableId);
+            if (!config) return;
+
+            showTable(config.cardId);
+            updateBreadcrumb(config.name);
+
+            // Lazy-load data (only first time)
+            if (!config.loaded) {
+                loadTableData(config.id, config.jsonPath).then(() => {
+                    config.loaded = true;
+                });
+            }
+        });
+    }
 });
