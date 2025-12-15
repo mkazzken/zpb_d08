@@ -259,3 +259,33 @@ td, th {
         justify-content: center;
     }
 }
+
+/*=============== LANGUAGE SWITCHER ===============*/
+.language-switcher {
+    position: fixed;
+    top: 15px;
+    right: 20px;
+    z-index: 1100;
+}
+
+.language-switcher .btn {
+    width: auto;
+    min-width: 80px;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: #fff;
+    font-size: 14px;
+    color: #2b2b2b;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.language-switcher .btn:hover {
+    background: #f6f6f6;
+}
+
+.language-switcher .dropdown-menu {
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-radius: 5px;
+}

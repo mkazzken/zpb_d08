@@ -1,0 +1,37 @@
+{
+  "pageTitle": "API Documentation",
+  "languageName": "Русский",
+  "breadcrumb": {
+    "home": "Главная",
+    "docs": "Документация API"
+  },
+  "nav": {
+    "home": "Главная",
+    "news": "Новости",
+    "about": "О фонде",
+    "contacts": "Контакты"
+  },
+  "headers": {
+    "page": "API Documentation",
+    "availableTables": "Доступные таблицы"
+  },
+  "tableHeaders": {
+    "field": "Поле",
+    "description": "Описание",
+    "valueExample": "Пример значения",
+    "notes": "Примечание"
+  },
+  "tables": {
+    "dsoTable": "ZBP_D08",
+    "dsoTable2": "ZBP_TEST1",
+    "dsoTable3": "ZBP_TEST2"
+  },
+  "footer": {
+    "rights": "© Все права защищены. 2024 Самрук-Казына"
+  },
+  "languageShort": {
+    "ru": "Рус",
+    "kz": "Қаз"
+  }
+}
+

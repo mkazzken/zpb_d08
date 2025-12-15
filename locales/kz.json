@@ -1,0 +1,37 @@
+{
+  "pageTitle": "API Құжаттамасы",
+  "languageName": "Қазақ тілі",
+  "breadcrumb": {
+    "home": "Басты бет",
+    "docs": "API құжаттамасы"
+  },
+  "nav": {
+    "home": "Басты бет",
+    "news": "Жаңалықтар",
+    "about": "Қор туралы",
+    "contacts": "Байланыс"
+  },
+  "headers": {
+    "page": "API Құжаттамасы",
+    "availableTables": "Қолжетімді кестелер"
+  },
+  "tableHeaders": {
+    "field": "Өріс",
+    "description": "Сипаттама",
+    "valueExample": "Мысал мәні",
+    "notes": "Ескертпе"
+  },
+  "tables": {
+    "dsoTable": "ZBP_D08",
+    "dsoTable2": "ZBP_TEST1",
+    "dsoTable3": "ZBP_TEST2"
+  },
+  "footer": {
+    "rights": "© Барлық құқықтар қорғалған. 2024 Самрук-Казына"
+  },
+  "languageShort": {
+    "ru": "Рус",
+    "kz": "Қаз"
+  }
+}
+

@@ -1,18 +1,32 @@
 // Table configuration
 const tables = [
-    { id: 'dsoTable', cardId: 'card-dsoTable', name: 'ZBP_D08', jsonPath: './data/zbp_d08.json' },
-    { id: 'dsoTable2', cardId: 'card-dsoTable2', name: 'ZBP_TEST1', jsonPath: './data/zbp_test1.json' },
-    { id: 'myTable', cardId: 'card-dsoTable3', name: 'ZBP_TEST2', jsonPath: './data/zbp_test.json'}
+    { id: 'dsoTable', cardId: 'card-dsoTable', nameKey: 'tables.dsoTable', fileName: 'dso_table', loadedByLang: {} },
+    { id: 'dsoTable2', cardId: 'card-dsoTable2', nameKey: 'tables.dsoTable2', fileName: 'zbp_test1', loadedByLang: {} },
+    { id: 'myTable', cardId: 'card-dsoTable3', nameKey: 'tables.dsoTable3', fileName: 'zbp_test', loadedByLang: {} }
 ];
+
+let currentTableId = null;
+
+function getLang() {
+    return window.i18n?.currentLang || 'ru';
+}
+
+function getTableLabel(table) {
+    const translated = window.i18n?.t(table.nameKey);
+    return translated || table.id;
+}
 
 // Update breadcrumb based on selected table
 function updateBreadcrumb(tableName = '') {
     const breadcrumb = document.getElementById('breadcrumb');
     if (!breadcrumb) return;
 
+    const home = window.i18n?.t('breadcrumb.home') || 'Главная';
+    const docs = window.i18n?.t('breadcrumb.docs') || 'Документация API';
+
     breadcrumb.innerHTML = `
-        <li class="breadcrumb-item"><a href="https://sk.kz/">Главная</a></li>
-        <li class="breadcrumb-item${tableName ? '' : ' active'}" ${tableName ? '' : 'aria-current="page"'}>${tableName ? '<a href="#" id="breadcrumb-doc-link">Документация API</a>' : 'Документация API'}</li>
+        <li class="breadcrumb-item"><a href="https://sk.kz/">${home}</a></li>
+        <li class="breadcrumb-item${tableName ? '' : ' active'}" ${tableName ? '' : 'aria-current="page"'}>${tableName ? `<a href="#" id="breadcrumb-doc-link">${docs}</a>` : docs}</li>
         ${tableName ? `<li class="breadcrumb-item active" aria-current="page">${tableName}</li>` : ''}
     `;
 
@@ -26,7 +40,9 @@ function updateBreadcrumb(tableName = '') {
 }
 
 // Load JSON data for a table
-function loadTableData(tableId, jsonPath) {
+function loadTableData(table) {
+    const lang = getLang();
+    const jsonPath = `./data/${lang}/${table.fileName}.json`;
     return fetch(jsonPath)
         .then(response => {
             if (!response.ok) {
@@ -35,16 +51,16 @@ function loadTableData(tableId, jsonPath) {
             return response.json();
         })
         .then(data => {
-            const tbody = document.querySelector(`#${tableId} tbody`);
+            const tbody = document.querySelector(`#${table.id} tbody`);
             if (!tbody) {
-                console.error(`Table tbody not found for ${tableId}`);
+                console.error(`Table tbody not found for ${table.id}`);
                 return;
             }
 
             tbody.innerHTML = '';
 
             if (!Array.isArray(data)) {
-                console.error(`Invalid data for ${tableId}:`, data);
+                console.error(`Invalid data for ${table.id}:`, data);
                 tbody.innerHTML = '<tr><td colspan="4" class="text-center text-danger">Ошибка: данные не являются массивом.</td></tr>';
                 return;
             }
@@ -65,11 +81,12 @@ function loadTableData(tableId, jsonPath) {
                 tbody.appendChild(tr);
             });
 
-            console.log(`Successfully loaded ${data.length} rows into ${tableId}`);
+            console.log(`Successfully loaded ${data.length} rows into ${table.id} (${lang})`);
+            table.loadedByLang[lang] = true;
         })
         .catch(error => {
-            console.error(`Error loading data for ${tableId}:`, error);
-            const tbody = document.querySelector(`#${tableId} tbody`);
+            console.error(`Error loading data for ${table.id}:`, error);
+            const tbody = document.querySelector(`#${table.id} tbody`);
             if (tbody) {
                 tbody.innerHTML = `
                     <tr>
@@ -97,32 +114,70 @@ function showTable(cardId) {
 
 // Show only the list (hide all tables) and reset breadcrumb
 function showList() {
+    currentTableId = null;
     showTable(null);
     updateBreadcrumb();
 }
 
+function updateTableTitles() {
+    tables.forEach((table) => {
+        const button = document.querySelector(`[data-table-id="${table.id}"]`);
+        const header = document.querySelector(`#${table.cardId} h3`);
+        const label = getTableLabel(table);
+        if (button) button.textContent = label;
+        if (header) header.textContent = label;
+    });
+}
+
+function reloadCurrentTable() {
+    if (!currentTableId) return;
+    const tableCfg = tables.find((t) => t.id === currentTableId);
+    if (!tableCfg) return;
+    tableCfg.loadedByLang[getLang()] = false;
+    loadTableData(tableCfg);
+    updateBreadcrumb(getTableLabel(tableCfg));
+}
+
 document.addEventListener('DOMContentLoaded', function() {
-    updateBreadcrumb();
+    const initPromise = window.i18n?.ready || Promise.resolve();
 
-    const list = document.getElementById('tableList');
-    if (list) {
-        list.addEventListener('click', (event) => {
-            const item = event.target.closest('[data-table-id]');
-            if (!item) return;
+    initPromise.then(() => {
+        updateTableTitles();
+        updateBreadcrumb();
 
-            const tableId = item.getAttribute('data-table-id');
-            const config = tables.find(t => t.id === tableId);
-            if (!config) return;
+        const list = document.getElementById('tableList');
+        if (list) {
+            list.addEventListener('click', (event) => {
+                const item = event.target.closest('[data-table-id]');
+                if (!item) return;
 
-            showTable(config.cardId);
-            updateBreadcrumb(config.name);
+                const tableId = item.getAttribute('data-table-id');
+                const config = tables.find(t => t.id === tableId);
+                if (!config) return;
 
-            if (!config.loaded) {
-                loadTableData(config.id, config.jsonPath).then(() => {
-                    config.loaded = true;
-                });
-            }
+                currentTableId = config.id;
+                showTable(config.cardId);
+                updateBreadcrumb(getTableLabel(config));
+
+                if (!config.loadedByLang[getLang()]) {
+                    loadTableData(config);
+                }
+            });
+        }
+
+        document.querySelectorAll('[data-lang]').forEach((item) => {
+            item.addEventListener('click', (event) => {
+                event.preventDefault();
+                const lang = item.getAttribute('data-lang');
+                window.i18n?.setLanguage(lang);
+            });
         });
-    }
+
+        window.i18n?.onLanguageChange(() => {
+            updateTableTitles();
+            tables.forEach((t) => { t.loadedByLang[getLang()] = false; });
+            reloadCurrentTable();
+        });
+    });
 });
 

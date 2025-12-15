@@ -1,0 +1,19 @@
+[
+  { "field": "ZBPDATYPE", "description": "Деректер түрі /BIC/MZBPDATYPE", "value_example": "DT_3 — Бағалау", "notes": "" },
+  { "field": "ZBPMETD", "description": "Жоспарлау әдісі", "value_example": "1M — Негізгі жоспар; 2M–8M — Баламалы жоспарлар", "notes": "" },
+  { "field": "ZPORTFCOM", "description": "Екінші деңгейдегі компания (прогноздық баланс формасын толтырады)", "value_example": "ZPORTFCOM тізімі", "notes": "" },
+  { "field": "ZBPVERS", "description": "Деректер нұсқасы", "value_example": "ACTUAL", "notes": "" },
+  { "field": "ZBPPER", "description": "Период", "value_example": "\"#\" мәні", "notes": "" },
+  { "field": "ZBPTIME", "description": "Есептік кезең", "value_example": "аа.жжжж", "notes": "" },
+  { "field": "ZBPACCT", "description": "Шот", "value_example": "/BIC/HZBPACCT тізімінен; HIEID: RF7APUVPRMZAOLZG694AXEIAP", "notes": "" },
+  { "field": "ZBPBUSACT", "description": "Business Activity", "value_example": "#", "notes": "" },
+  { "field": "ZBPSU", "description": "Қордың құрылымдық бөлімі", "value_example": "PC", "notes": "тұрақты" },
+  { "field": "ZBPSOURCE", "description": "Дерек көзі", "value_example": "MANUAL", "notes": "тұрақты" },
+  { "field": "ZBPPOLIT", "description": "Саясат түрі", "value_example": "POL_FU, POL_PC", "notes": "" },
+  { "field": "ZBPREP", "description": "Есептілік белгісі", "value_example": "QUARTERLY", "notes": "" },
+  { "field": "ZBPCUR", "description": "Валюта", "value_example": "KZT", "notes": "" },
+  { "field": "ZBPTTYPE", "description": "Сома түрі", "value_example": "#", "notes": "" },
+  { "field": "ZBPTXT1", "description": "Сипаттама", "value_example": "#", "notes": "" },
+  { "field": "ZBPSUM", "description": "Сома", "value_example": "", "notes": "" }
+]
+
