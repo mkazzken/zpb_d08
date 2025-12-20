@@ -1,10 +1,23 @@
-// Table configuration
-const tables = [
-    { id: 'dsoTable', cardId: 'card-dsoTable', nameKey: 'tables.dsoTable', fileName: 'dso_table', loadedByLang: {} },
-    { id: 'dsoTable2', cardId: 'card-dsoTable2', nameKey: 'tables.dsoTable2', fileName: 'zbp_test1', loadedByLang: {} },
-    { id: 'myTable', cardId: 'card-dsoTable3', nameKey: 'tables.dsoTable3', fileName: 'zbp_test', loadedByLang: {} }
-];
+// Folder structure
+const folderStructure = {
+    'BP3_balance': {
+        'balance-ispoln': ['zbp_d08_ocenka.json'],
+        'BP3-DZO-balance-dzo': ['structure_zbp_d06_fact.json', 'structure_zbp_d06_ocenka.json', 'structure_zbp_d06_plan.json'],
+        'BP3-P-PK-predicted-balance': ['structure_zbp_d06_ocenka.json', 'structure_zbp_d06_plan.json', 'structure_zbp_d06_prognoz.json']
+    },
+    'BP3_dds': {
+        'BP4-DZO-dds': ['zbp_d03_fact.json', 'zbp_d03_ocenka.json', 'zbp_d03_plan.json'],
+        'BP4-P-PK-predicted-dds': ['zbp_d05_ocenka.json', 'zbp_d05_plan.json', 'zbp_d05_prognoz.json'],
+        'BP4-Q-PK-dds-ispoln': ['zbp_d03_ocenka.json']
+    },
+    'BP6_TFR': {
+        'BP6-M-PK-tfr-monthly': ['zbp_d17_fact.json', 'zbp_d17_ocenka.json', 'zbp_d17_text.json'],
+        'BP6-P-PK_prognoz-tfr': ['zbp_d06_prognoz.json', 'zbp_d15_ocenka.json', 'zbp_d15_plan.json'],
+        'BP6-Q-PK-TFR': ['zbp_d17_fact_period.json', 'zbp_d17_ocenka.json', 'zbp_d17_text.json']
+    }
+};
 
+let currentPath = [];
 let currentTableId = null;
 
 function getLang() {
@@ -16,33 +29,51 @@ function getTableLabel(table) {
     return translated || table.id;
 }
 
-// Update breadcrumb based on selected table
-function updateBreadcrumb(tableName = '') {
+// Update breadcrumb based on current path
+function updateBreadcrumb() {
     const breadcrumb = document.getElementById('breadcrumb');
     if (!breadcrumb) return;
 
     const home = window.i18n?.t('breadcrumb.home') || 'Главная';
     const docs = window.i18n?.t('breadcrumb.docs') || 'Документация API';
 
-    breadcrumb.innerHTML = `
-        <li class="breadcrumb-item"><a href="https://sk.kz/">${home}</a></li>
-        <li class="breadcrumb-item${tableName ? '' : ' active'}" ${tableName ? '' : 'aria-current="page"'}>${tableName ? `<a href="#" id="breadcrumb-doc-link">${docs}</a>` : docs}</li>
-        ${tableName ? `<li class="breadcrumb-item active" aria-current="page">${tableName}</li>` : ''}
-    `;
+    let breadcrumbHTML = `<li class="breadcrumb-item"><a href="https://sk.kz/">${home}</a></li>`;
+    breadcrumbHTML += `<li class="breadcrumb-item"><a href="#" id="breadcrumb-docs">${docs}</a></li>`;
 
-    const docLink = document.getElementById('breadcrumb-doc-link');
-    if (docLink) {
-        docLink.addEventListener('click', (event) => {
+    currentPath.forEach((part, index) => {
+        const isLast = index === currentPath.length - 1;
+        if (isLast) {
+            breadcrumbHTML += `<li class="breadcrumb-item active" aria-current="page">${part}</li>`;
+        } else {
+            breadcrumbHTML += `<li class="breadcrumb-item"><a href="#" data-path-index="${index}">${part}</a></li>`;
+        }
+    });
+
+    breadcrumb.innerHTML = breadcrumbHTML;
+
+    // Add event listeners
+    const docsLink = document.getElementById('breadcrumb-docs');
+    if (docsLink) {
+        docsLink.addEventListener('click', (event) => {
             event.preventDefault();
-            showList();
+            showFolders([]);
         });
     }
+
+    document.querySelectorAll('[data-path-index]').forEach(link => {
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+            const index = parseInt(link.getAttribute('data-path-index'));
+            showFolders(currentPath.slice(0, index + 1));
+        });
+    });
 }
 
 // Load JSON data for a table
-function loadTableData(table) {
+function loadTableData(fileName) {
     const lang = getLang();
-    const jsonPath = `./data/${lang}/${table.fileName}.json`;
+    const path = currentPath.join('/');
+    const jsonPath = `./data/${lang}/${path}/${fileName}`;
     return fetch(jsonPath)
         .then(response => {
             if (!response.ok) {
@@ -51,16 +82,39 @@ function loadTableData(table) {
             return response.json();
         })
         .then(data => {
-            const tbody = document.querySelector(`#${table.id} tbody`);
-            if (!tbody) {
-                console.error(`Table tbody not found for ${table.id}`);
-                return;
-            }
+            const tableContainer = document.getElementById('tableContainer');
+            const fieldHeader = window.i18n?.t('tableHeaders.field') || 'Поле';
+            const descHeader = window.i18n?.t('tableHeaders.description') || 'Описание';
+            const exampleHeader = window.i18n?.t('tableHeaders.valueExample') || 'Пример значения';
+            const notesHeader = window.i18n?.t('tableHeaders.notes') || 'Примечание';
 
-            tbody.innerHTML = '';
+            tableContainer.innerHTML = `
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">${fileName}</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>${fieldHeader}</th>
+                                        <th>${descHeader}</th>
+                                        <th>${exampleHeader}</th>
+                                        <th>${notesHeader}</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            const tbody = tableContainer.querySelector('tbody');
 
             if (!Array.isArray(data)) {
-                console.error(`Invalid data for ${table.id}:`, data);
+                console.error(`Invalid data for ${fileName}:`, data);
                 tbody.innerHTML = '<tr><td colspan="4" class="text-center text-danger">Ошибка: данные не являются массивом.</td></tr>';
                 return;
             }
@@ -81,89 +135,98 @@ function loadTableData(table) {
                 tbody.appendChild(tr);
             });
 
-            console.log(`Successfully loaded ${data.length} rows into ${table.id} (${lang})`);
-            table.loadedByLang[lang] = true;
+            console.log(`Successfully loaded ${data.length} rows into ${fileName} (${lang})`);
         })
         .catch(error => {
-            console.error(`Error loading data for ${table.id}:`, error);
-            const tbody = document.querySelector(`#${table.id} tbody`);
-            if (tbody) {
-                tbody.innerHTML = `
-                    <tr>
-                        <td colspan="4" class="text-center text-danger">
+            console.error(`Error loading data for ${fileName}:`, error);
+            const tableContainer = document.getElementById('tableContainer');
+            tableContainer.innerHTML = `
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="alert alert-danger">
                             Ошибка загрузки данных: ${error.message}
-                        </td>
-                    </tr>
-                `;
-            }
+                        </div>
+                    </div>
+                </div>
+            `;
         });
 }
 
-// Show one table card and hide the others
-function showTable(cardId) {
-    tables.forEach(({ cardId: cId }) => {
-        const cardEl = document.getElementById(cId);
-        if (!cardEl) return;
-        if (cardId && cId === cardId) {
-            cardEl.classList.remove('d-none');
-        } else {
-            cardEl.classList.add('d-none');
-        }
-    });
-}
-
-// Show only the list (hide all tables) and reset breadcrumb
-function showList() {
+// Show folders/files at the given path
+function showFolders(path) {
+    currentPath = path;
     currentTableId = null;
-    showTable(null);
+    const folderList = document.getElementById('folderList');
+    const tableContainer = document.getElementById('tableContainer');
+
+    folderList.innerHTML = '';
+    tableContainer.classList.add('d-none');
+
+    let items = [];
+    if (path.length === 0) {
+        // Root folders
+        items = Object.keys(folderStructure);
+    } else if (path.length === 1) {
+        // Subfolders
+        const mainFolder = path[0];
+        if (folderStructure[mainFolder]) {
+            items = Object.keys(folderStructure[mainFolder]);
+        }
+    } else if (path.length === 2) {
+        // Files
+        const mainFolder = path[0];
+        const subFolder = path[1];
+        if (folderStructure[mainFolder] && folderStructure[mainFolder][subFolder]) {
+            items = folderStructure[mainFolder][subFolder];
+            // Show files as buttons to load tables
+            items.forEach(file => {
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.className = 'list-group-item list-group-item-action';
+                button.textContent = file;
+                button.addEventListener('click', () => {
+                    showTable(file);
+                });
+                folderList.appendChild(button);
+            });
+            updateBreadcrumb();
+            return;
+        }
+    }
+
+    // Show folders
+    items.forEach(item => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'list-group-item list-group-item-action';
+        button.textContent = window.i18n?.t('folders.' + item) || item;
+        button.addEventListener('click', () => {
+            showFolders([...path, item]);
+        });
+        folderList.appendChild(button);
+    });
     updateBreadcrumb();
 }
 
-function updateTableTitles() {
-    tables.forEach((table) => {
-        const button = document.querySelector(`[data-table-id="${table.id}"]`);
-        const header = document.querySelector(`#${table.cardId} h3`);
-        const label = getTableLabel(table);
-        if (button) button.textContent = label;
-        if (header) header.textContent = label;
-    });
-}
+// Show table for a file
+function showTable(fileName) {
+    currentPath.push(fileName);
+    currentTableId = fileName;
+    const folderList = document.getElementById('folderList');
+    const tableContainer = document.getElementById('tableContainer');
 
-function reloadCurrentTable() {
-    if (!currentTableId) return;
-    const tableCfg = tables.find((t) => t.id === currentTableId);
-    if (!tableCfg) return;
-    tableCfg.loadedByLang[getLang()] = false;
-    loadTableData(tableCfg);
-    updateBreadcrumb(getTableLabel(tableCfg));
+    folderList.innerHTML = '';
+    tableContainer.classList.remove('d-none');
+
+    loadTableData(fileName);
+    updateBreadcrumb();
 }
 
 document.addEventListener('DOMContentLoaded', function() {
     const initPromise = window.i18n?.ready || Promise.resolve();
 
     initPromise.then(() => {
-        updateTableTitles();
-        updateBreadcrumb();
-
-        const list = document.getElementById('tableList');
-        if (list) {
-            list.addEventListener('click', (event) => {
-                const item = event.target.closest('[data-table-id]');
-                if (!item) return;
-
-                const tableId = item.getAttribute('data-table-id');
-                const config = tables.find(t => t.id === tableId);
-                if (!config) return;
-
-                currentTableId = config.id;
-                showTable(config.cardId);
-                updateBreadcrumb(getTableLabel(config));
-
-                if (!config.loadedByLang[getLang()]) {
-                    loadTableData(config);
-                }
-            });
-        }
+        showFolders([]);
 
         document.querySelectorAll('[data-lang]').forEach((item) => {
             item.addEventListener('click', (event) => {
@@ -174,9 +237,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         window.i18n?.onLanguageChange(() => {
-            updateTableTitles();
-            tables.forEach((t) => { t.loadedByLang[getLang()] = false; });
-            reloadCurrentTable();
+            showFolders(currentPath);
+            if (currentTableId) {
+                loadTableData(currentTableId);
+            }
         });
     });
 });

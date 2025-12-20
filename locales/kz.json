@@ -13,7 +13,8 @@
   },
   "headers": {
     "page": "API Құжаттамасы",
-    "availableTables": "Қолжетімді кестелер"
+    "availableTables": "Қолжетімді кестелер",
+    "availableFolders": "Қолжетімді қалталар"
   },
   "tableHeaders": {
     "field": "Өріс",
@@ -25,6 +26,20 @@
     "dsoTable": "ZBP_D08",
     "dsoTable2": "ZBP_TEST1",
     "dsoTable3": "ZBP_TEST2"
+  },
+  "folders": {
+    "BP3_balance": "BP3 Баланс",
+    "BP3_dds": "BP3 DDS",
+    "BP6_TFR": "BP6 TFR",
+    "balance-ispoln": "Баланс орындалу",
+    "BP3-DZO-balance-dzo": "BP3-DZO Баланс DZO",
+    "BP3-P-PK-predicted-balance": "BP3-P-PK Болжалған баланс",
+    "BP4-DZO-dds": "BP4-DZO DDS",
+    "BP4-P-PK-predicted-dds": "BP4-P-PK Болжалған DDS",
+    "BP4-Q-PK-dds-ispoln": "BP4-Q-PK DDS Орындалу",
+    "BP6-M-PK-tfr-monthly": "BP6-M-PK TFR Ай сайын",
+    "BP6-P-PK_prognoz-tfr": "BP6-P-PK TFR Болжам",
+    "BP6-Q-PK-TFR": "BP6-Q-PK TFR"
   },
   "footer": {
     "rights": "© Барлық құқықтар қорғалған. 2024 Самрук-Казына"

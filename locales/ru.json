@@ -13,7 +13,8 @@
   },
   "headers": {
     "page": "API Documentation",
-    "availableTables": "Доступные таблицы"
+    "availableTables": "Доступные таблицы",
+    "availableFolders": "Доступные папки"
   },
   "tableHeaders": {
     "field": "Поле",
@@ -25,6 +26,20 @@
     "dsoTable": "ZBP_D08",
     "dsoTable2": "ZBP_TEST1",
     "dsoTable3": "ZBP_TEST2"
+  },
+  "folders": {
+    "BP3_balance": "BP3 Баланс",
+    "BP3_dds": "BP3 DDS",
+    "BP6_TFR": "BP6 TFR",
+    "balance-ispoln": "Баланс исполнения",
+    "BP3-DZO-balance-dzo": "BP3-DZO Баланс DZO",
+    "BP3-P-PK-predicted-balance": "BP3-P-PK Прогнозируемый баланс",
+    "BP4-DZO-dds": "BP4-DZO DDS",
+    "BP4-P-PK-predicted-dds": "BP4-P-PK Прогнозируемый DDS",
+    "BP4-Q-PK-dds-ispoln": "BP4-Q-PK DDS Исполнение",
+    "BP6-M-PK-tfr-monthly": "BP6-M-PK TFR Месячно",
+    "BP6-P-PK_prognoz-tfr": "BP6-P-PK Прогноз TFR",
+    "BP6-Q-PK-TFR": "BP6-Q-PK TFR"
   },
   "footer": {
     "rights": "© Все права защищены. 2024 Самрук-Казына"
