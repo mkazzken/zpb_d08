@@ -65,7 +65,7 @@ main {
 }
 
 .nav-container {
-  max-width: 1200px;
+  max-width: 1350px;
   margin-left: auto;
   margin-right: auto;
   padding: 0 1.5rem;
@@ -105,7 +105,9 @@ main {
 .nav__menu {
   display: flex;
   align-items: center;
+  gap: clamp(20px, 2.5vw, 16px);
   height: 100%;
+  margin-left: auto;
 }
 
 .nav__list {
@@ -151,9 +153,8 @@ main {
 
 /*=============== LANGUAGE SWITCHER ===============*/
 .language-switcher {
-    position: fixed;
-    top: 0;
-    right: 120px;
+    margin-left: 0; 
+    position: relative;
     height: var(--header-height);
     display: flex;
     align-items: center;
@@ -161,6 +162,8 @@ main {
     border-left: 1px solid var(--border-color);
     border-right: 1px solid var(--border-color);
     background-color: var(--white-color);
+    
+    
 }
 
 .language-switcher .btn.dropdown-toggle {
@@ -210,6 +213,10 @@ main {
 }
 
 .language-switcher .dropdown-menu {
+    position: absolute; 
+    top: 100%;
+    right: 0;
+    z-index: 2000;
     border: 1px solid #e0e0e0;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     border-radius: 0;
