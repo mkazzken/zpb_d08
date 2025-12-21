@@ -1,0 +1,98 @@
+[
+  {
+    "field": "ZBPDATYPE",
+    "description": "Деректер түрі",
+    "value_example": "DT_3 — Бағалау (/BIC/MZBPDATYPE)",
+    "notes": ""
+  },
+  {
+    "field": "ZBPMETD",
+    "description": "Жоспарлау әдісі",
+    "value_example": "1M — Негізгі жоспар; 2M–8M — Баламалы жоспарлар (/BIC/MZBPMETD)",
+    "notes": ""
+  },
+  {
+    "field": "ZPORTFCOM",
+    "description": "«Болжамды баланс» нысанын толтыратын екінші деңгейдегі компания",
+    "value_example": "Компаниялар анықтамалығы (ZPORTFCOM парағы)",
+    "notes": "DO* компаниялары толтырады"
+  },
+  {
+    "field": "ZBPVERS",
+    "description": "Деректер нұсқасы",
+    "value_example": "DRAFT",
+    "notes": "Жұмыс нұсқасы (тұрақты мән)"
+  },
+  {
+    "field": "ZBPPER",
+    "description": "Жоспарлы кезең (бесжылдық)",
+    "value_example": "гггг–(гггг+4), мысалы 2025–2029",
+    "notes": ""
+  },
+  {
+    "field": "ZBPTIME",
+    "description": "Есептік кезең",
+    "value_example": "мм.жжжж (бағалау деректері үшін әрдайым 12.жжжж, мысалы 12.2024)",
+    "notes": ""
+  },
+  {
+    "field": "ZBPACCT",
+    "description": "Шот",
+    "value_example": "/BIC/HZBPACCT кестесінен; HIEID BBD/BBQ/BBP: RF7APUVPRMZAOLZG694AXEIAP",
+    "notes": ""
+  },
+  {
+    "field": "ZBPBUSACT",
+    "description": "Бизнес қызметі (Business Activity)",
+    "value_example": "#",
+    "notes": "Мән тағайындалмаған"
+  },
+  {
+    "field": "ZBPSU",
+    "description": "Қордың құрылымдық бөлімшесі",
+    "value_example": "PC",
+    "notes": "Тұрақты мән"
+  },
+  {
+    "field": "ZBPSOURCE",
+    "description": "Дереккөз",
+    "value_example": "MANUAL",
+    "notes": "Тұрақты мән"
+  },
+  {
+    "field": "ZBPPOLIT",
+    "description": "Саясат түрі",
+    "value_example": "POL_FU (барлық компаниялар үшін, DO0004 Кегоктан басқа); DO0004 Кегок үшін — POL_PC",
+    "notes": ""
+  },
+  {
+    "field": "ZBPREP",
+    "description": "Есептілік белгісі",
+    "value_example": "PLANNING",
+    "notes": ""
+  },
+  {
+    "field": "ZBPCUR",
+    "description": "Валюта",
+    "value_example": "KZT",
+    "notes": ""
+  },
+  {
+    "field": "ZBPTTYPE",
+    "description": "Сома түрі",
+    "value_example": "#",
+    "notes": "Мән тағайындалмаған"
+  },
+  {
+    "field": "ZBPTXT1",
+    "description": "Сипаттама",
+    "value_example": "#",
+    "notes": "Мән тағайындалмаған"
+  },
+  {
+    "field": "ZBPSUM",
+    "description": "Сома",
+    "value_example": "",
+    "notes": ""
+  }
+]

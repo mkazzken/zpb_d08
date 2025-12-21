@@ -14,8 +14,8 @@
   {
     "field": "ZPORTFCOM",
     "description": "Компаниялар портфелі",
-    "value_example": "CO*",
-    "notes": "\"Болжамды Баланс\" нысанына 3-ші деңгейдегі CO* ДЗО компаниялары деректерді енгізеді. Компаниялар анықтамалығынан алынады."
+    "value_example": "DO*",
+    "notes": "\"Болжамды Баланс\" нысанына екінші деңгейдегі DO* компаниялары деректерді енгізеді. Компаниялар анықтамалығынан алынады."
   },
   {
     "field": "ZBPVERS",
@@ -39,7 +39,7 @@
     "field": "ZBPACCT",
     "description": "БА шоты",
     "value_example": "(Анықтамалықтан)",
-    "notes": "Кестедегі барлық мәндерді алу: /BIC/HZBPACCT. HIEID: FKU29GLKSRLAM6ID7RZNH9TZC"
+    "notes": "Кестедегі барлық мәндерді алу: /BIC/HZBPACCT. HIEID: RF7APUVPRMZAOLZG694AXEIAP"
   },
   {
     "field": "ZBPBUSACT",
@@ -63,13 +63,13 @@
     "field": "ZBPPOLIT",
     "description": "Біріктіру саясаты",
     "value_example": "POL_FU",
-    "notes": "Саясат түрі: барлық компаниялар үшін POL_FU"
+    "notes": "Саясат түрі: барлық компаниялар үшін POL_FU. DO0004 Кегок және тағы басқалар үшін - POL_PC"
   },
   {
     "field": "ZBPREP",
     "description": "Есеп беру белгісі",
-    "value_example": "MONTHLY",
-    "notes": "Есеп беру белгісі: MONTHLY"
+    "value_example": "QUARTERLY",
+    "notes": "Есеп беру белгісі: QUARTERLY"
   },
   {
     "field": "ZBPCUR",

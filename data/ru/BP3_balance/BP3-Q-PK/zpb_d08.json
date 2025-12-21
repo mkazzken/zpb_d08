@@ -2,8 +2,8 @@
   {
     "field": "ZBPDATYPE",
     "description": "Тип данных",
-    "value_example": "DT_2 - Факт",
-    "notes": "DT_2 - Факт"
+    "value_example": "DT_3 - Оценка",
+    "notes": "DT_3 - Оценка"
   },
   {
     "field": "ZBPMETD",
@@ -14,8 +14,8 @@
   {
     "field": "ZPORTFCOM",
     "description": "Портфель компаний",
-    "value_example": "CO*",
-    "notes": "В форму \"прогнозный Баланс\" данные заносят ДЗО 3 уровня CO*. Значения из справочника компаний."
+    "value_example": "DO*",
+    "notes": "В форму \"прогнозный Баланс\" данные заносят компании второго уровня DO*. Значения из справочника по компаниям."
   },
   {
     "field": "ZBPVERS",
@@ -32,14 +32,14 @@
   {
     "field": "ZBPTIME",
     "description": "Период (месяц/год)",
-    "value_example": "12.2024",
-    "notes": "Отчетный период для Факта заполняется по логике: мм.гггг. Для данных \"Факт прошлого года\" всегда 12.гггг. Например: 12.2024"
+    "value_example": "мм.гггг",
+    "notes": "Отчетный период для \"Оценки\" заполняется по логике: мм.гггг"
   },
   {
     "field": "ZBPACCT",
     "description": "Счет ГК",
     "value_example": "(Из справочника)",
-    "notes": "Брать все значения из таблицы: /BIC/HZBPACCT. HIEID BBD: FKU29GLKSRLAM6ID7RZNH9TZC. HIEID BBQ: FKU29GLKSRLAM6ID7RZNH9TZC"
+    "notes": "Брать все значения из таблицы: /BIC/HZBPACCT. HIEID: RF7APUVPRMZAOLZG694AXEIAP"
   },
   {
     "field": "ZBPBUSACT",
@@ -63,13 +63,13 @@
     "field": "ZBPPOLIT",
     "description": "Политика консолидации",
     "value_example": "POL_FU",
-    "notes": "Тип политики: для всех компаний POL_FU"
+    "notes": "Тип политики: для всех компаний POL_FU. Для DO0004 Кегок и еще - POL_PC"
   },
   {
     "field": "ZBPREP",
     "description": "Признак отчетности",
-    "value_example": "MONTHLY",
-    "notes": "Признак отчетности: MONTHLY"
+    "value_example": "QUARTERLY",
+    "notes": "Признак отчетности: QUARTERLY"
   },
   {
     "field": "ZBPCUR",
