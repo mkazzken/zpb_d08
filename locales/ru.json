@@ -9,7 +9,9 @@
     "home": "Главная",
     "news": "Новости",
     "about": "О фонде",
-    "contacts": "Контакты"
+    "contacts": "Контакты",
+    "back": "Назад",
+    "forward": "Вперед"
   },
   "headers": {
     "page": "API Documentation",

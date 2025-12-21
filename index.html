@@ -59,6 +59,7 @@
     </header>
 
     <main>
+
         <div class="container mt-4">
             <!-- Breadcrumb -->
             <nav aria-label="breadcrumb" class="mb-4">
@@ -71,10 +72,20 @@
             <!-- Page Header -->
             <h2 class="mb-4" data-i18n="headers.page">API Documentation</h2>
 
+
             <!-- Folder Navigation -->
             <div class="card mb-4">
                 <div class="card-body">
                     <h5 class="card-title mb-3" data-i18n="headers.availableFolders">Доступные папки</h5>
+                    <!-- Navigation Buttons -->
+                    <div class="navigation-buttons">
+                        <button class="nav-btn" id="backBtn" title="Назад" data-i18n-title="nav.back">
+                            <i class="bi bi-arrow-left"></i>
+                        </button>
+                        <button class="nav-btn" id="forwardBtn" title="Вперед" data-i18n-title="nav.forward">
+                            <i class="bi bi-arrow-right"></i>
+                        </button>
+                    </div>
                     <div id="folderList" class="list-group list-group-flush">
                         <!-- Folders will be loaded dynamically -->
                     </div>

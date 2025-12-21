@@ -20,6 +20,54 @@ const folderStructure = {
 
 let currentPath = [];
 let currentTableId = null;
+let navigationHistory = [];
+let currentHistoryIndex = -1;
+let isNavigatingHistory = false;
+
+function addToHistory(entry) {
+    if (isNavigatingHistory) return;
+    // Remove all entries after current index
+    navigationHistory = navigationHistory.slice(0, currentHistoryIndex + 1);
+    navigationHistory.push(entry);
+    currentHistoryIndex++;
+    updateNavigationButtons();
+}
+
+function goBack() {
+    if (currentHistoryIndex > 0) {
+        currentHistoryIndex--;
+        isNavigatingHistory = true;
+        navigateToHistoryEntry(navigationHistory[currentHistoryIndex]);
+        isNavigatingHistory = false;
+        updateNavigationButtons();
+    }
+}
+
+function goForward() {
+    if (currentHistoryIndex < navigationHistory.length - 1) {
+        currentHistoryIndex++;
+        isNavigatingHistory = true;
+        navigateToHistoryEntry(navigationHistory[currentHistoryIndex]);
+        isNavigatingHistory = false;
+        updateNavigationButtons();
+    }
+}
+
+function navigateToHistoryEntry(entry) {
+    if (entry.type === 'folder') {
+        showFolders(entry.path, false);
+    } else if (entry.type === 'table') {
+        currentPath = [...entry.path];
+        showTable(entry.fileName, false);
+    }
+}
+
+function updateNavigationButtons() {
+    const backBtn = document.getElementById('backBtn');
+    const forwardBtn = document.getElementById('forwardBtn');
+    if (backBtn) backBtn.disabled = currentHistoryIndex <= 0;
+    if (forwardBtn) forwardBtn.disabled = currentHistoryIndex >= navigationHistory.length - 1;
+}
 
 function getLang() {
     return window.i18n?.currentLang || 'ru';
@@ -57,7 +105,7 @@ function updateBreadcrumb() {
     if (docsLink) {
         docsLink.addEventListener('click', (event) => {
             event.preventDefault();
-            showFolders([]);
+            showFolders([], true);
         });
     }
 
@@ -65,15 +113,30 @@ function updateBreadcrumb() {
         link.addEventListener('click', (event) => {
             event.preventDefault();
             const index = parseInt(link.getAttribute('data-path-index'));
-            showFolders(currentPath.slice(0, index + 1));
+            showFolders(currentPath.slice(0, index + 1), true);
         });
     });
+}
+
+function findPath(fileName) {
+    for (const main in folderStructure) {
+        for (const sub in folderStructure[main]) {
+            if (folderStructure[main][sub].includes(fileName)) {
+                return `${main}/${sub}`;
+            }
+        }
+    }
+    return '';
 }
 
 // Load JSON data for a table
 function loadTableData(fileName) {
     const lang = getLang();
-    const path = currentPath.slice(0, -1).join('/');
+    let path = currentPath.slice(0, -1).join('/');
+    if (path.split('/').length < 2) {
+        path = findPath(fileName);
+    }
+    console.log('Loading', fileName, 'path:', path, 'currentPath:', currentPath);
     const jsonPath = `./data/${lang}/${path}/${fileName}`;
     return fetch(jsonPath)
         .then(response => {
@@ -154,14 +217,23 @@ function loadTableData(fileName) {
 }
 
 // Show folders/files at the given path
-function showFolders(path) {
-    currentPath = path;
+function showFolders(path, addToHistoryFlag = true) {
+    currentPath = [...path]; // Создаем копию массива
     currentTableId = null;
     const folderList = document.getElementById('folderList');
     const tableContainer = document.getElementById('tableContainer');
 
+    if (!folderList) {
+        console.error('folderList element not found');
+        return;
+    }
+
     folderList.innerHTML = '';
     tableContainer.classList.add('d-none');
+
+    if (addToHistoryFlag) {
+        addToHistory({ type: 'folder', path: [...path] });
+    }
 
     let items = [];
     if (path.length === 0) {
@@ -185,8 +257,9 @@ function showFolders(path) {
                 button.type = 'button';
                 button.className = 'list-group-item list-group-item-action';
                 button.textContent = file;
-                button.addEventListener('click', () => {
-                    showTable(file);
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showTable(file, true);
                 });
                 folderList.appendChild(button);
             });
@@ -201,8 +274,9 @@ function showFolders(path) {
         button.type = 'button';
         button.className = 'list-group-item list-group-item-action';
         button.textContent = window.i18n?.t('folders.' + item) || item;
-        button.addEventListener('click', () => {
-            showFolders([...path, item]);
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            showFolders([...path, item], true);
         });
         folderList.appendChild(button);
     });
@@ -210,39 +284,88 @@ function showFolders(path) {
 }
 
 // Show table for a file
-function showTable(fileName) {
-    currentPath.push(fileName);
+function showTable(fileName, addToHistoryFlag = true) {
+    // Не добавляем fileName в currentPath здесь
     currentTableId = fileName;
     const folderList = document.getElementById('folderList');
     const tableContainer = document.getElementById('tableContainer');
 
+    if (!folderList || !tableContainer) {
+        console.error('Required elements not found');
+        return;
+    }
+
     folderList.innerHTML = '';
     tableContainer.classList.remove('d-none');
 
-    loadTableData(fileName);
+    if (addToHistoryFlag) {
+        addToHistory({ type: 'table', path: [...currentPath], fileName: fileName });
+    }
+
+    // Добавляем fileName в путь только для breadcrumb
+    const tempPath = [...currentPath, fileName];
+    const savedPath = currentPath;
+    currentPath = tempPath;
     updateBreadcrumb();
+    currentPath = savedPath;
+
+    loadTableData(fileName);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded, initializing...');
+    
     const initPromise = window.i18n?.ready || Promise.resolve();
 
     initPromise.then(() => {
-        showFolders([]);
+        console.log('i18n ready, showing folders...');
+        
+        // Инициализируем с пустого пути
+        showFolders([], true);
 
+        // Настраиваем кнопки навигации
+        const backBtn = document.getElementById('backBtn');
+        const forwardBtn = document.getElementById('forwardBtn');
+        
+        if (backBtn) {
+            backBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                console.log('Back button clicked');
+                goBack();
+            });
+        } else {
+            console.error('Back button not found');
+        }
+
+        if (forwardBtn) {
+            forwardBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                console.log('Forward button clicked');
+                goForward();
+            });
+        } else {
+            console.error('Forward button not found');
+        }
+
+        // Настраиваем переключатели языка
         document.querySelectorAll('[data-lang]').forEach((item) => {
             item.addEventListener('click', (event) => {
                 event.preventDefault();
                 const lang = item.getAttribute('data-lang');
+                console.log('Language changed to:', lang);
                 window.i18n?.setLanguage(lang);
             });
         });
 
+        // Слушаем изменения языка
         window.i18n?.onLanguageChange(() => {
-            showFolders(currentPath);
+            console.log('Language changed, reloading...');
+            showFolders(currentPath, false);
             if (currentTableId) {
                 loadTableData(currentTableId);
             }
         });
+    }).catch(error => {
+        console.error('Initialization error:', error);
     });
 });
-

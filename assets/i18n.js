@@ -19,19 +19,28 @@
 
   function translateElement(el, locale) {
     const key = el.getAttribute('data-i18n');
-    if (!key) return;
-    const value = getNested(locale, key);
-    if (value !== null && value !== undefined) {
-      if (el.tagName === 'TITLE') {
-        document.title = value;
+    if (key) {
+      const value = getNested(locale, key);
+      if (value !== null && value !== undefined) {
+        if (el.tagName === 'TITLE') {
+          document.title = value;
+        }
+        el.textContent = value;
       }
-      el.textContent = value;
+    }
+
+    const titleKey = el.getAttribute('data-i18n-title');
+    if (titleKey) {
+      const titleValue = getNested(locale, titleKey);
+      if (titleValue !== null && titleValue !== undefined) {
+        el.setAttribute('title', titleValue);
+      }
     }
   }
 
   async function applyTranslations() {
     const locale = await loadLocale(currentLang);
-    document.querySelectorAll('[data-i18n]').forEach((el) => translateElement(el, locale));
+    document.querySelectorAll('[data-i18n], [data-i18n-title]').forEach((el) => translateElement(el, locale));
     const shortLabel = getNested(locale, `languageShort.${currentLang}`) || currentLang.toUpperCase();
     const currentLanguageEl = document.getElementById('currentLanguage');
     if (currentLanguageEl) currentLanguageEl.textContent = shortLabel;
