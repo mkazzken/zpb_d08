@@ -1,149 +1,159 @@
-# API Documentation Data Upload Guide
+# API Documentation Site
 
-This guide explains how to upload and manage data for the API Documentation project. The project displays API field descriptions from JSON data files.
+Этот проект представляет собой сайт с документацией API для таблиц ZBP, организованный в виде иерархической структуры папок. Сайт позволяет просматривать JSON-файлы как таблицы с поддержкой локализации (русский и казахский языки).
 
-## Project Overview
+## Структура проекта
 
-The API Documentation site renders tables from JSON files located in the `data/` directory. Each table corresponds to a specific API endpoint or data structure.
+```
+api-docs-zbp_d08/
+├── index.html          # Главная страница сайта
+├── README.md           # Этот файл
+├── assets/
+│   ├── script.js       # Основная логика JavaScript
+│   ├── i18n.js         # Локализация
+│   ├── styles.css      # Стили
+│   └── scss/           # Исходники стилей
+├── data/
+│   ├── ru/             # Данные на русском
+│   └── kz/             # Данные на казахском
+└── locales/
+    ├── ru.json         # Переводы на русский
+    └── kz.json         # Переводы на казахский
+```
 
-## Data Structure
+## Как добавить новые папки и файлы
 
-All data files are JSON arrays containing objects with the following structure:
+### 1. Добавление новой корневой папки
+
+Корневые папки - это основные разделы (например, BP3_balance, BP3_dds, BP6_TFR).
+
+1. **Создайте папки в data/ru/ и data/kz/:**
+
+   ```
+   data/ru/новая_папка/
+   data/kz/новая_папка/
+   ```
+
+2. **Обновите folderStructure в assets/script.js:**
+
+   Добавьте новый ключ в объект `folderStructure`:
+
+   ```javascript
+   const folderStructure = {
+       // существующие...
+       'новая_папка': {
+           // подпапки будут здесь
+       }
+   };
+   ```
+
+3. **Добавьте локализацию в locales/ru.json и locales/kz.json:**
+
+   В разделе "folders":
+
+   ```json
+   "folders": {
+       // существующие...
+       "новая_папка": "Название на русском"
+   }
+   ```
+
+   И аналогично в kz.json.
+
+### 2. Добавление новой подпапки
+
+Подпапки находятся внутри корневых папок.
+
+1. **Создайте подпапки:**
+
+   ```
+   data/ru/корневая_папка/новая_подпапка/
+   data/kz/корневая_папка/новая_подпапка/
+   ```
+
+2. **Обновите folderStructure в assets/script.js:**
+
+   Добавьте подпапку в соответствующую корневую папку:
+
+   ```javascript
+   'корневая_папка': {
+       // существующие подпапки...
+       'новая_подпапка': [
+           // файлы здесь
+       ]
+   }
+   ```
+
+3. **Добавьте локализацию:**
+
+   В "folders" добавьте ключ для новой подпапки.
+
+### 3. Добавление файлов JSON
+
+Файлы JSON должны содержать массив объектов с полями: `field`, `description`, `value_example`, `notes`.
+
+Пример структуры JSON:
 
 ```json
 [
-  {
-    "field": "FieldName",
-    "description": "Human-readable description of the field",
-    "value_example": "Sample value or format",
-    "notes": "Optional additional notes"
-  }
+    {
+        "field": "ID",
+        "description": "Уникальный идентификатор",
+        "value_example": "12345",
+        "notes": "Обязательное поле"
+    },
+    {
+        "field": "NAME",
+        "description": "Название",
+        "value_example": "Пример названия",
+        "notes": ""
+    }
 ]
 ```
 
-### Field Descriptions:
-- `field` (string): Technical field name
-- `description` (string): Human-readable description
-- `value_example` (string): Example value or format
-- `notes` (string): Optional remarks (can be empty)
+1. **Создайте JSON-файлы в соответствующих папках:**
 
-## How to Upload New Data
-
-### Step 1: Prepare Your Data
-1. Create a JSON file following the structure above
-2. Ensure all required fields are present
-3. Validate the JSON format (use a JSON validator if needed)
-
-### Step 2: Add the JSON File
-1. Place your JSON file in the appropriate `data/` subdirectory:
-   - `data/` - for main tables
-   - `data/kz/` - for Kazakh language versions
-   - `data/ru/` - for Russian language versions
-2. Use lowercase filenames with underscores, e.g., `my_new_table.json`
-
-### Step 3: Register the Table in the Interface
-1. Open `index.html`
-2. In the `#tableList` section, add a new button:
-   ```html
-   <button type="button" class="list-group-item list-group-item-action" data-table-id="myNewTable">MY NEW TABLE</button>
+   ```
+   data/ru/корневая_папка/подпапка/новый_файл.json
+   data/kz/корневая_папка/подпапка/новый_файл.json
    ```
 
-### Step 4: Add the Table Display Card
-1. Still in `index.html`, add a new card block after the existing ones:
-   ```html
-   <div class="card mb-4 d-none" id="card-myNewTable">
-     <div class="card-header">
-       <h3 class="mb-0">MY NEW TABLE</h3>
-     </div>
-     <div class="card-body">
-       <div class="table-responsive">
-         <table id="myNewTable" class="table table-striped table-bordered table-hover">
-           <thead>
-             <tr>
-               <th data-i18n="tableHeaders.field">Поле</th>
-               <th data-i18n="tableHeaders.description">Описание</th>
-               <th data-i18n="tableHeaders.valueExample">Пример значения</th>
-               <th data-i18n="tableHeaders.notes">Примечание</th>
-             </tr>
-           </thead>
-           <tbody></tbody>
-         </table>
-       </div>
-     </div>
-   </div>
-   ```
+2. **Обновите folderStructure в assets/script.js:**
 
-### Step 5: Configure the JavaScript
-1. Open `assets/script.js`
-2. Add an entry to the `tables` array:
+   Добавьте имя файла в массив подпапки:
+
    ```javascript
-   { id: 'myNewTable', cardId: 'card-myNewTable', name: 'MY NEW TABLE', jsonPath: './data/my_new_table.json' }
+   'подпапка': [
+       // существующие файлы...
+       'новый_файл.json'
+   ]
    ```
 
-## Updating Existing Data
+   Имена файлов не локализуются, они остаются техническими.
 
-### Method 1: Direct File Edit
-1. Locate the JSON file in `data/`, `data/kz/`, or `data/ru/`
-2. Edit the file directly with your changes
-3. Save the file
-4. Refresh the browser to see changes
+### 4. Запуск сайта
 
-### Method 2: Replace Entire File
-1. Prepare the updated JSON file locally
-2. Replace the existing file in the appropriate directory
-3. Ensure the filename matches exactly
-4. Refresh the browser to see changes
+1. Откройте терминал в корне проекта.
+2. Запустите локальный сервер:
 
-## Data Validation
+   ```bash
+   python -m http.server 8000
+   ```
 
-Before uploading, ensure your data:
-- Is valid JSON (no syntax errors)
-- Contains all required fields for each object
-- Has consistent data types
-- Uses UTF-8 encoding
-- Follows the established naming conventions
+   Или используйте любой другой статический сервер (например, Live Server в VS Code).
 
-## Localization Support
+3. Откройте браузер и перейдите на `http://localhost:8000`.
 
-The project supports multiple languages:
-- Russian (default): `data/`
-- Kazakh: `data/kz/`
-- Russian (alternative): `data/ru/`
+### 5. Локализация
 
-When adding localized data, place files in the corresponding subdirectory and ensure the JSON structure matches.
+- Названия папок переводятся в `locales/ru.json` и `locales/kz.json`.
+- Заголовки таблиц и интерфейса также переводятся там же.
+- При добавлении новых папок всегда добавляйте переводы.
 
-## Troubleshooting
+### Примечания
 
-### Table Not Loading
-- Check browser console for errors
-- Verify JSON file path in `script.js`
-- Ensure JSON is valid
-- Confirm file permissions allow reading
-
-### Data Not Displaying
-- Check that all required fields are present
-- Verify the table ID matches between HTML and JavaScript
-- Ensure the card has `d-none` class initially
-
-### Localization Issues
-- Confirm files exist in correct language subdirectories
-- Check that language switching works in the interface
-
-## Best Practices
-
-1. **Backup**: Always backup existing files before making changes
-2. **Version Control**: Use Git to track changes to data files
-3. **Validation**: Test JSON files before uploading
-4. **Consistency**: Maintain consistent formatting across all data files
-5. **Documentation**: Update this README when adding new data types or processes
-
-## Quick Start for Data Upload
-
-1. Prepare your JSON data file
-2. Place it in `data/your_file.json`
-3. Add button in `index.html`
-4. Add card in `index.html`
-5. Add entry in `assets/script.js`
-6. Test by opening `index.html` and clicking your new button
+- Убедитесь, что имена папок в `folderStructure` точно совпадают с именами в файловой системе.
+- JSON-файлы должны быть валидными и содержать массив объектов.
+- После изменений перезагрузите страницу для обновления структуры.
 
 

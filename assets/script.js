@@ -4,7 +4,7 @@ const folderStructure = {
         'balance-ispoln': ['zbp_d08_ocenka.json'],
         'BP3-DZO-balance-dzo': ['structure_zbp_d06_fact.json', 'structure_zbp_d06_ocenka.json', 'structure_zbp_d06_plan.json'],
         'BP3-P-PK-predicted-balance': ['structure_zbp_d06_ocenka.json', 'structure_zbp_d06_plan.json', 'structure_zbp_d06_prognoz.json'],
-        'BP3-Q-PK' : ['zbp_d08.json']
+        'BP3-Q-PK' : ['zpb_d08.json']
     },
     'BP3_dds': {
         'BP4-DZO-dds': ['zbp_d03_fact.json', 'zbp_d03_ocenka.json', 'zbp_d03_plan.json'],
