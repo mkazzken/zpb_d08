@@ -8,44 +8,32 @@
   {
     "field": "ZBPMETD",
     "description": "Жоспарлау әдісі",
-    "value_example": "#",
-    "notes": "\"#\" мәні тағайындалмаған."
+    "value_example": "1M - Негізгі жоспар",
+    "notes": "1M - Негізгі жоспар; 2M-8M - Балама жоспар"
   },
   {
     "field": "ZPORTFCOM",
     "description": "Компаниялар портфелі",
     "value_example": "DO*",
-    "notes": "\"ТФР орындау\" нысанына екінші деңгейдегі DO* компаниялары деректерді енгізеді. Компаниялар анықтамалығынан алынады."
+    "notes": "\"Болжамды Баланс\" нысанына екінші деңгейдегі DO* компаниялары деректерді енгізеді. Компаниялар анықтамалығынан алынады."
   },
   {
     "field": "ZBPVERS",
     "description": "Деректер нұсқасы",
-    "value_example": "ACTUAL",
-    "notes": "Жұмыс нұсқасы тұрақтысы: ACTUAL"
-  },
-  {
-    "field": "ZBPFKPI",
-    "description": "Қаржылық KPI факторы",
-    "value_example": "#",
-    "notes": "\"#\" мәні тағайындалмаған."
-  },
-  {
-    "field": "ZBPKPI",
-    "description": "KPI",
-    "value_example": "#",
-    "notes": "\"#\" мәні тағайындалмаған."
+    "value_example": "DRAFT",
+    "notes": "Жұмыс нұсқасы тұрақтысы: DRAFT"
   },
   {
     "field": "ZBPPER",
-    "description": "Есептілік кезең",
-    "value_example": "#",
-    "notes": "\"#\" мәні тағайындалмаған."
+    "description": "Жоспарлы бесжылдық",
+    "value_example": "2025-2029",
+    "notes": "Жоспарлы бесжылдық логика бойынша толтырылады: ағымдағы есептілік кезең жылы - +4 жыл (жжжж-(жжжж+4ж)). Мысалы: 2025-2029"
   },
   {
     "field": "ZBPTIME",
-    "description": "Кезең",
-    "value_example": "жжжжаа",
-    "notes": "Есептілік кезең логика бойынша толтырылады: жжжжаа"
+    "description": "Кезең (ай/жыл)",
+    "value_example": "12.2024",
+    "notes": "Есептілік кезең логика бойынша толтырылады: аа.жжжж. Бағалау деректері үшін әрқашан 12.жжжж. Мысалы: 12.2024"
   },
   {
     "field": "ZBPACCT",
@@ -80,8 +68,8 @@
   {
     "field": "ZBPREP",
     "description": "Есеп беру белгісі",
-    "value_example": "QUARTERLY",
-    "notes": "Есеп беру белгісі: QUARTERLY"
+    "value_example": "PLANNING",
+    "notes": "Есеп беру белгісі: PLANNING"
   },
   {
     "field": "ZBPCUR",
@@ -102,8 +90,8 @@
     "notes": "\"#\" мәні тағайындалмаған."
   },
   {
-    "field": "ZBPSUM1",
-    "description": "Сома 1",
+    "field": "ZBPSUM",
+    "description": "Сома",
     "value_example": "(Сандық мән)",
     "notes": "Сома"
   },

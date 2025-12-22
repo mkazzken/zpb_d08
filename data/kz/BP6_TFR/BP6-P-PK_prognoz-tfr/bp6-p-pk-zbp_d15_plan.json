@@ -2,56 +2,44 @@
   {
     "field": "ZBPDATYPE",
     "description": "Дерек түрі",
-    "value_example": "DT_03 - Бағалау",
-    "notes": "DT_03 - Бағалау"
+    "value_example": "DT_01 - Жоспар",
+    "notes": "DT_01 - Жоспар"
   },
   {
     "field": "ZBPMETD",
     "description": "Жоспарлау әдісі",
-    "value_example": "#",
-    "notes": "\"#\" мәні тағайындалмаған."
+    "value_example": "1M - Негізгі жоспар",
+    "notes": "1M - Негізгі жоспар; 2M-8M - Балама жоспар"
   },
   {
     "field": "ZPORTFCOM",
     "description": "Компаниялар портфелі",
     "value_example": "DO*",
-    "notes": "\"ТФР орындау\" нысанына екінші деңгейдегі DO* компаниялары деректерді енгізеді. Компаниялар анықтамалығынан алынады."
+    "notes": "\"Болжамды Баланс\" нысанына екінші деңгейдегі DO* компаниялары деректерді енгізеді. Компаниялар анықтамалығынан алынады."
   },
   {
     "field": "ZBPVERS",
     "description": "Деректер нұсқасы",
-    "value_example": "ACTUAL",
-    "notes": "Жұмыс нұсқасы тұрақтысы: ACTUAL"
-  },
-  {
-    "field": "ZBPFKPI",
-    "description": "Қаржылық KPI факторы",
-    "value_example": "#",
-    "notes": "\"#\" мәні тағайындалмаған."
-  },
-  {
-    "field": "ZBPKPI",
-    "description": "KPI",
-    "value_example": "#",
-    "notes": "\"#\" мәні тағайындалмаған."
+    "value_example": "DRAFT",
+    "notes": "Жұмыс нұсқасы тұрақтысы: DRAFT"
   },
   {
     "field": "ZBPPER",
-    "description": "Есептілік кезең",
-    "value_example": "#",
-    "notes": "\"#\" мәні тағайындалмаған."
+    "description": "Жоспарлы бесжылдық",
+    "value_example": "2025-2029",
+    "notes": "Жоспарлы бесжылдық логика бойынша толтырылады: ағымдағы есептілік кезең жылы - +4 жыл (жжжж-(жжжж+4ж)). Мысалы: 2025-2029"
   },
   {
     "field": "ZBPTIME",
-    "description": "Кезең",
-    "value_example": "жжжжаа",
-    "notes": "Есептілік кезең логика бойынша толтырылады: жжжжаа"
+    "description": "Кезең (жыл/ай)",
+    "value_example": "202501",
+    "notes": "\"Жоспар\" деректері айлар бойынша бөлініспен. Мысалы: 202501; 202512"
   },
   {
     "field": "ZBPACCT",
     "description": "Шот жоспарының ID",
     "value_example": "(ZBPSTFC-тен)",
-    "notes": "Шот жоспарының ID қаржылық мақалалар ZBPSTFC-тен көшіріледі, деректерді нысанға сақтау кезінде"
+    "notes": "Шот жоспарының ID мақалалар ZBPSTFC-тен көшіріледі, деректерді нысанға сақтау кезінде"
   },
   {
     "field": "ZBPFACT",
@@ -80,8 +68,8 @@
   {
     "field": "ZBPREP",
     "description": "Есеп беру белгісі",
-    "value_example": "QUARTERLY",
-    "notes": "Есеп беру белгісі: QUARTERLY"
+    "value_example": "PLANNING",
+    "notes": "Есеп беру белгісі: PLANNING"
   },
   {
     "field": "ZBPCUR",

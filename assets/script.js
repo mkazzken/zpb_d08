@@ -144,7 +144,14 @@ function loadTableData(fileName) {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            return response.json();
+            return response.text();
+        })
+        .then(text => {
+            // Remove BOM if present
+            if (text.charCodeAt(0) === 0xFEFF) {
+                text = text.slice(1);
+            }
+            return JSON.parse(text);
         })
         .then(data => {
             const tableContainer = document.getElementById('tableContainer');
