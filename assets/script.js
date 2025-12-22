@@ -14,7 +14,8 @@ const folderStructure = {
     'BP6_TFR': {
         'BP6-M-PK-tfr-monthly': ['zbp_d17_fact.json', 'zbp_d17_ocenka.json', 'zbp_d17_text.json'],
         'BP6-P-PK_prognoz-tfr': ['zbp_d06_prognoz.json', 'zbp_d15_ocenka.json', 'zbp_d15_plan.json'],
-        'BP6-Q-PK-TFR': ['zbp_d17_fact_period.json', 'zbp_d17_ocenka.json', 'zbp_d17_text.json']
+        'BP6-Q-PK-TFR': ['zbp_d17_fact_period.json', 'zbp_d17_ocenka.json', 'zbp_d17_text.json'],
+        'BP-6-DZO-TFR': ['zbp_d17_fact.json', 'zbp_d17_ocenka.json', 'zbp_d15_plan.json']
     }
 };
 
