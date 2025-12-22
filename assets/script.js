@@ -3,7 +3,7 @@ const folderStructure = {
     'BP3_balance': {
         'balance-ispoln': ['zbp_d08_ocenka.json'],
         'BP3-DZO-balance-dzo': ['structure_zbp_d06_fact.json', 'structure_zbp_d06_ocenka.json', 'structure_zbp_d06_plan.json'],
-        'BP3-P-PK-predicted-balance': ['structure_zbp_d06_ocenka.json', 'structure_zbp_d06_plan.json', 'structure_zbp_d06_prognoz.json'],
+        'BP3-P-PK-predicted-balance': ['bp3-p-pk_zbp_d06_ocenka.json', 'bp3-p-pk_zbp_d06_plan.json', 'bp3-p-pk_zbp_d06_prognoz.json'],
         'BP3-Q-PK' : ['zpb_d08.json']
     },
     'BP3_dds': {
@@ -20,7 +20,7 @@ const folderStructure = {
 
 let currentPath = [];
 let currentTableId = null;
-let navigationHistory = [];
+let navigationHistory = []; 
 let currentHistoryIndex = -1;
 let isNavigatingHistory = false;
 
@@ -256,7 +256,7 @@ function showFolders(path, addToHistoryFlag = true) {
                 const button = document.createElement('button');
                 button.type = 'button';
                 button.className = 'list-group-item list-group-item-action';
-                button.textContent = file;
+                button.textContent = window.i18n?.t('files.' + file.replace('.json', '')) || file;
                 button.addEventListener('click', (e) => {
                     e.preventDefault();
                     showTable(file, true);
