@@ -1,0 +1,116 @@
+[
+  {
+    "field": "ZBPDATYPE",
+    "description": "Тип данных",
+    "value_example": "DT_01 - План",
+    "notes": "DT_01 - План"
+  },
+  {
+    "field": "ZBPMETD",
+    "description": "Метод планирования",
+    "value_example": "1M - Базовый план",
+    "notes": "1M - Базовый план; 2M-8M - Альтернативный план"
+  },
+  {
+    "field": "ZPORTFCOM",
+    "description": "Портфель компаний",
+    "value_example": "C*",
+    "notes": "В данную форму \"ТФР\" данные заносят ДЗО 3 уровня C*, справочник компаний приложила (смотреть лист ZPORTFCOM)"
+  },
+  {
+    "field": "ZBPVERS",
+    "description": "Версия данных",
+    "value_example": "DRAFT",
+    "notes": "Версия: DRAFT"
+  },
+  {
+    "field": "ZBPFKPI",
+    "description": "Финансовый KPI фактор",
+    "value_example": "#",
+    "notes": "Значение \"#\" не присвоено."
+  },
+  {
+    "field": "ZBPKPI",
+    "description": "KPI",
+    "value_example": "#",
+    "notes": "Значение \"#\" не присвоено."
+  },
+  {
+    "field": "ZBPPER",
+    "description": "Плановая пятилетка",
+    "value_example": "2025-2029",
+    "notes": "Плановая пятилетка заполняется по логике: текущий отчетный период год - +4год (гггг-(гггг+4г)). Например: 2025-2029"
+  },
+  {
+    "field": "ZBPTIME",
+    "description": "Период (месяц/год)",
+    "value_example": "12.2025",
+    "notes": "Отчетный период для \"План\" заполняется по логике: мм.гггг. Для данных \"План\" всегда 12.гггг. Например: 12.2025"
+  },
+  {
+    "field": "ZBPACCT",
+    "description": "ID плана счетов",
+    "value_example": "(Из ZBPSTFC)",
+    "notes": "ID плана счетов копируется из финансовых статей ZBPSTFC, при сохранении данных в форме"
+  },
+  {
+    "field": "ZBPFACT",
+    "description": "ID факторы",
+    "value_example": "000F*, 000P*",
+    "notes": "ID факторы копируется из 000F*, 000P* статей ZBPSTFC, при сохранении данных в форме"
+  },
+  {
+    "field": "ZBPSTFC",
+    "description": "Финансовые статьи",
+    "value_example": "(Из DSO ZBP_D33)",
+    "notes": "При формировании формы, соответствующие статьи к пятилетке и ПК подтягивается из DSO ZBP_D33 (смотреть лист ZBP_D33)"
+  },
+  {
+    "field": "ZBPSOURCE",
+    "description": "Источник данных",
+    "value_example": "MANUAL",
+    "notes": "Источник данных: константа MANUAL"
+  },
+  {
+    "field": "ZBPPOLIT",
+    "description": "Политика консолидации",
+    "value_example": "POL_FU",
+    "notes": "Тип политики: для всех компании POL_FU"
+  },
+  {
+    "field": "ZBPREP",
+    "description": "Признак отчетности",
+    "value_example": "PLANNING",
+    "notes": "Признак отчетности: PLANNING"
+  },
+  {
+    "field": "ZBPCUR",
+    "description": "Валюта",
+    "value_example": "#",
+    "notes": "Значение \"#\" не присвоено."
+  },
+  {
+    "field": "ZBPTTYPE",
+    "description": "Тип транзакции",
+    "value_example": "#",
+    "notes": "Значение \"#\" не присвоено."
+  },
+  {
+    "field": "ZBPTXT1",
+    "description": "Текст проводки",
+    "value_example": "#",
+    "notes": "Значение \"#\" не присвоено."
+  },
+  {
+    "field": "ZBPSUM",
+    "description": "Сумма",
+    "value_example": "(Числовое значение)",
+    "notes": "Сумма"
+  },
+  {
+    "field": "ZBPSUM7",
+    "description": "Сумма 7",
+    "value_example": "(Скопировано из ZBPSUM1)",
+    "notes": "Нужно скопировать суммы из ZBPSUM1"
+  }
+]

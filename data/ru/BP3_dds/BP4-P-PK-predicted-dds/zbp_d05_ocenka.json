@@ -1,0 +1,98 @@
+[
+  {
+    "field": "ZBPDATYPE",
+    "description": "Тип данных",
+    "value_example": "DT_3 - Оценка",
+    "notes": "DT_3 - Оценка"
+  },
+  {
+    "field": "ZBPMETD",
+    "description": "Метод планирования",
+    "value_example": "1M - Базовый план",
+    "notes": "1M - Базовый план; 2M-8M - Альтернативный план"
+  },
+  {
+    "field": "ZPORTFCOM",
+    "description": "Портфель компаний",
+    "value_example": "DO*",
+    "notes": "В форму \"прогнозный Баланс\" данные заносят компании второго уровня DO*. Значения из справочника по компаниям."
+  },
+  {
+    "field": "ZBPVERS",
+    "description": "Версия данных",
+    "value_example": "DRAFT",
+    "notes": "Рабочая версия константа: DRAFT"
+  },
+  {
+    "field": "ZBPPER",
+    "description": "Плановая пятилетка",
+    "value_example": "2025-2029",
+    "notes": "Плановая пятилетка заполняется по логике: текущий отчетный период год - +4год (гггг-(гггг+4г)). Например: 2025-2029"
+  },
+  {
+    "field": "ZBPTIME",
+    "description": "Период (месяц/год)",
+    "value_example": "12.2024",
+    "notes": "Отчетный период заполняется по логике: мм.гггг. Для данных Оценка всегда 12.гггг. Например: 12.2024"
+  },
+  {
+    "field": "ZBPACCT",
+    "description": "Счет ГК",
+    "value_example": "(Из справочника)",
+    "notes": "Брать все значения из таблицы: /BIC/HZBPACCT. HIEID BBD: N15H4WKK43Q7QOBO8FGCHRPTE; HIEID BBQ: U97IJQ942M42OZAYLZX47RV1I; HIEID BBP: U97IJQ942M42OZAYLZX47RV1I"
+  },
+  {
+    "field": "ZBPBUSACT",
+    "description": "Бизнес-активность",
+    "value_example": "#",
+    "notes": "Значение \"#\" не присвоено."
+  },
+  {
+    "field": "ZBPSU",
+    "description": "Стандартная единица учета",
+    "value_example": "PC",
+    "notes": "Структурное подразделение Фонда: константа PC"
+  },
+  {
+    "field": "ZBPSOURCE",
+    "description": "Источник данных",
+    "value_example": "MANUAL",
+    "notes": "Источник данных: константа MANUAL"
+  },
+  {
+    "field": "ZBPPOLIT",
+    "description": "Политика консолидации",
+    "value_example": "POL_FU",
+    "notes": "Тип политики: для всех компании POL_FU, кроме DO0004 Кегок. Для DO0004 Кегок - POL_PC"
+  },
+  {
+    "field": "ZBPREP",
+    "description": "Признак отчетности",
+    "value_example": "PLANNING",
+    "notes": "Признак отчетности: PLANNING"
+  },
+  {
+    "field": "ZBPCUR",
+    "description": "Валюта",
+    "value_example": "KZT",
+    "notes": "Валюта: KZT"
+  },
+  {
+    "field": "ZBPTTYPE",
+    "description": "Тип транзакции",
+    "value_example": "#",
+    "notes": "Значение \"#\" не присвоено."
+  },
+  {
+    "field": "ZBPTXT1",
+    "description": "Текст проводки",
+    "value_example": "#",
+    "notes": "Значение \"#\" не присвоено."
+  },
+  {
+    "field": "ZBPSUM",
+    "description": "Сумма",
+    "value_example": "(Числовое значение)",
+    "notes": "Сумма"
+  }
+]

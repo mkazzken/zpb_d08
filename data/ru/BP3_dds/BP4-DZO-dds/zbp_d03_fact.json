@@ -1,0 +1,98 @@
+[
+  {
+    "field": "ZBPDATYPE",
+    "description": "Тип данных",
+    "value_example": "DT_2 - Факт",
+    "notes": "DT_2 - Факт"
+  },
+  {
+    "field": "ZBPMETD",
+    "description": "Метод планирования",
+    "value_example": "#",
+    "notes": "Значение \"#\" не присвоено."
+  },
+  {
+    "field": "ZPORTFCOM",
+    "description": "Портфель компаний",
+    "value_example": "CO*",
+    "notes": "В форму \"прогнозный Баланс\" данные заносят ДЗО 3 уровня CO*. Значения из справочника компаний."
+  },
+  {
+    "field": "ZBPVERS",
+    "description": "Версия данных",
+    "value_example": "ACTUAL",
+    "notes": "Версия: ACTUAL"
+  },
+  {
+    "field": "ZBPPER",
+    "description": "Отчетный период",
+    "value_example": "#",
+    "notes": "Значение \"#\" не присвоено."
+  },
+  {
+    "field": "ZBPTIME",
+    "description": "Период (месяц/год)",
+    "value_example": "12.2024",
+    "notes": "Отчетный период для Факта заполняется по логике: мм.гггг. Для данных \"Факт прошлого года\" всегда 12.гггг. Например: 12.2024"
+  },
+  {
+    "field": "ZBPACCT",
+    "description": "Счет ГК",
+    "value_example": "(Из справочника)",
+    "notes": "Брать все значения из таблицы: /BIC/HZBPACCT. HIEID BBD: GYJIQHCP5U5MGRLMF7H5ZUKVO; HIEID BBQ: GYJIQHCP5U5MGRLMF7H5ZUKVO; HIEID BBP: GYJIQHCP5U5MGRLMF7H5ZUKVO"
+  },
+  {
+    "field": "ZBPBUSACT",
+    "description": "Бизнес-активность",
+    "value_example": "CONS",
+    "notes": "Бизнес деятельность: CONS"
+  },
+  {
+    "field": "ZBPSU",
+    "description": "Стандартная единица учета",
+    "value_example": "PC",
+    "notes": "Структурное подразделение Фонда: константа PC"
+  },
+  {
+    "field": "ZBPSOURCE",
+    "description": "Источник данных",
+    "value_example": "MANUAL",
+    "notes": "Источник данных: константа MANUAL"
+  },
+  {
+    "field": "ZBPPOLIT",
+    "description": "Политика консолидации",
+    "value_example": "POL_FU",
+    "notes": "Тип политики: для всех компании POL_FU"
+  },
+  {
+    "field": "ZBPREP",
+    "description": "Признак отчетности",
+    "value_example": "MONTHLY",
+    "notes": "Признак отчетности: MONTHLY"
+  },
+  {
+    "field": "ZBPCUR",
+    "description": "Валюта",
+    "value_example": "KZT",
+    "notes": "Валюта: KZT"
+  },
+  {
+    "field": "ZBPTTYPE",
+    "description": "Тип транзакции",
+    "value_example": "#",
+    "notes": "Значение \"#\" не присвоено."
+  },
+  {
+    "field": "ZBPTXT1",
+    "description": "Текст проводки",
+    "value_example": "#",
+    "notes": "Значение \"#\" не присвоено."
+  },
+  {
+    "field": "ZBPSUM",
+    "description": "Сумма",
+    "value_example": "(Числовое значение)",
+    "notes": "Сумма"
+  }
+]

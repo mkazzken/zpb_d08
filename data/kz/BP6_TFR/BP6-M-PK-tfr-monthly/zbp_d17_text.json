@@ -1,0 +1,116 @@
+[
+  {
+    "field": "ZBPDATYPE",
+    "description": "Дерек түрі",
+    "value_example": "DT_03 - Бағалау",
+    "notes": "DT_03 - Бағалау"
+  },
+  {
+    "field": "ZBPMETD",
+    "description": "Жоспарлау әдісі",
+    "value_example": "#",
+    "notes": "\"#\" мәні тағайындалмаған."
+  },
+  {
+    "field": "ZPORTFCOM",
+    "description": "Компаниялар портфелі",
+    "value_example": "DO*",
+    "notes": "\"ТФР орындау\" нысанына екінші деңгейдегі DO* компаниялары деректерді енгізеді. Компаниялар анықтамалығынан алынады."
+  },
+  {
+    "field": "ZBPVERS",
+    "description": "Деректер нұсқасы",
+    "value_example": "ACTUAL",
+    "notes": "Жұмыс нұсқасы тұрақтысы: ACTUAL"
+  },
+  {
+    "field": "ZBPFKPI",
+    "description": "Қаржылық KPI факторы",
+    "value_example": "#",
+    "notes": "\"#\" мәні тағайындалмаған."
+  },
+  {
+    "field": "ZBPKPI",
+    "description": "KPI",
+    "value_example": "#",
+    "notes": "\"#\" мәні тағайындалмаған."
+  },
+  {
+    "field": "ZBPPER",
+    "description": "Есептілік кезең",
+    "value_example": "#",
+    "notes": "\"#\" мәні тағайындалмаған."
+  },
+  {
+    "field": "ZBPTIME",
+    "description": "Кезең",
+    "value_example": "жжжжаа",
+    "notes": "Есептілік кезең логика бойынша толтырылады: жжжжаа"
+  },
+  {
+    "field": "ZBPACCT",
+    "description": "Шот жоспарының ID",
+    "value_example": "(ZBPSTFC-тен)",
+    "notes": "Шот жоспарының ID қаржылық мақалалар ZBPSTFC-тен көшіріледі, деректерді нысанға сақтау кезінде"
+  },
+  {
+    "field": "ZBPFACT",
+    "description": "Факторлардың ID",
+    "value_example": "000F*, 000P*",
+    "notes": "Факторлардың ID 000F*, 000P* мақалалары ZBPSTFC-тен көшіріледі, деректерді нысанға сақтау кезінде"
+  },
+  {
+    "field": "ZBPSTFC",
+    "description": "Қаржылық мақалалар",
+    "value_example": "(DSO ZBP_D33-тен)",
+    "notes": "Нысан қалыптастыру кезінде, бесжылдыққа және ПК-ға сәйкес мақалалар DSO ZBP_D33-тен алынады (ZBP_D33 парағын қараңыз)"
+  },
+  {
+    "field": "ZBPSOURCE",
+    "description": "Деректер көзі",
+    "value_example": "MANUAL",
+    "notes": "Деректер көзі: тұрақты MANUAL"
+  },
+  {
+    "field": "ZBPPOLIT",
+    "description": "Біріктіру саясаты",
+    "value_example": "POL_FU",
+    "notes": "Саясат түрі: барлық компаниялар үшін POL_FU, DO0004 Кегоктан басқа. DO0004 Кегок үшін - POL_PC"
+  },
+  {
+    "field": "ZBPREP",
+    "description": "Есеп беру белгісі",
+    "value_example": "MONTHLY",
+    "notes": "Есеп беру белгісі: MONTHLY"
+  },
+  {
+    "field": "ZBPCUR",
+    "description": "Валюта",
+    "value_example": "#",
+    "notes": "\"#\" мәні тағайындалмаған."
+  },
+  {
+    "field": "ZBPTTYPE",
+    "description": "Транзакция түрі",
+    "value_example": "#",
+    "notes": "\"#\" мәні тағайындалмаған."
+  },
+  {
+    "field": "ZBPTXT1",
+    "description": "Мәтін енгізу",
+    "value_example": "T_007-Жоспарға бағалауды өзгертуге түсініктеме",
+    "notes": "T_007-Жоспарға бағалауды өзгертуге түсініктеме; T_008-Өткен кезеңнің фактісіне бағалауды өзгертуге түсініктеме; T_014-Көрсеткішке жетпеу туралы іске асырылған айтарлықтай тәуекелдер; T_015-Тәуекелді төмендету үшін іске асырылған алдын ала шаралар; 250 таңбаға дейін мәтін енгізу"
+  },
+  {
+    "field": "ZBPSUM",
+    "description": "Сома",
+    "value_example": "0",
+    "notes": "0"
+  },
+  {
+    "field": "ZBPSUM7",
+    "description": "Сома 7",
+    "value_example": "0",
+    "notes": "0"
+  }
+]
