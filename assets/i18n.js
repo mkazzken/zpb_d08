@@ -6,28 +6,145 @@
 
   // Embedded locales to avoid any HTTP/fetch usage
   const EMBEDDED_LOCALES = {
-    ru: (() => {
-      try {
-        // Load from generated ru.json file at build time
-        return JSON.parse(`
-${require('fs').readFileSync('./locales/ru.json', 'utf-8')}
-        `);
-      } catch (e) {
-        console.error('Failed to embed RU locale:', e);
-        return {};
+    "ru": {
+      "pageTitle": "API Documentation",
+      "languageName": "Русский",
+      "breadcrumb": {
+        "home": "Главная",
+        "docs": "Документация API"
+      },
+      "nav": {
+        "home": "Главная",
+        "news": "Новости",
+        "about": "О фонде",
+        "contacts": "Контакты",
+        "back": "Назад",
+        "forward": "Вперед"
+      },
+      "headers": {
+        "page": "API Documentation",
+        "availableTables": "Доступные таблицы",
+        "availableFolders": "Доступные папки"
+      },
+      "tableHeaders": {
+        "field": "Поле",
+        "description": "Описание",
+        "valueExample": "Пример значения",
+        "notes": "Примечание"
+      },
+      "tables": {
+        "dsoTable": "ZBP_D08",
+        "dsoTable2": "ZBP_TEST1",
+        "dsoTable3": "ZBP_TEST2"
+      },
+      "folders": {
+        "BP3_balance": "Формы по БАЛАНС",
+        "BP3_dds": "Формы по ДДС",
+        "BP6_TFR": "Формы ТФР: Отчет о прибылях и убытках и отчет по производственным показателям",
+        "balance-ispoln": "Баланс исполнения",
+        "BP3-DZO-balance-dzo": "3.Баланс для DZO (BP3-DZO)",
+        "BP3-P-PK-predicted-balance": "1. Прогнозный Баланс для ПК (BP3-P-PK)",
+        "BP3-Q-PK": "2. Баланс исполнение ПК (BP3-Q-PK)",
+        "BP4-DZO-dds": "3. Ежемесячное исполнение движения денежных средств для ДЗО (BP4-DZO)",
+        "BP4-P-PK-predicted-dds": "1. Прогноз движения денежных средств для ПК (BP4-P-PK)",
+        "BP4-Q-PK-dds-ispoln": "2. Ежеквартальное исполнение движения денежных средств для ПК (BP4-Q-PK)",
+        "BP6-M-PK-tfr-monthly": "3. Ежемесячное исполнение отчета о прибылях и убытках и по производственным показателям для ПК (BP6-M-PK)",
+        "BP6-P-PK_prognoz-tfr": "1. Прогнозный отчет о прибылях и убытках и по производственным показателям для ПК (BP6-P-PK)",
+        "BP6-Q-PK-TFR": "2. Ежеквартальное исполнение отчета о прибылях и убытках и по производственным показателям для ПК (BP6-Q-PK)",
+        "BP6-DZO-TFR": "4. Ежемесячное исполнение отчета о прибылях и убытках и по производственным показателям для ДЗО (BP6-DZO)"
+      },
+      "files": {
+        "zbp_d08_ocenka": "Баланс Исполнение",
+        "structure_zbp_d06_fact": "Баланс для DZO (BP3-DZO)",
+        "bp3-p-pk_zbp_d06_ocenka": "Прогнозный Баланс для ПК (BP3-P-PK)",
+        "zpb_d08": "Баланс исполнение ПК (BP3-Q-PK)",
+        "zbp_d03_fact": "Ежемесячное исполнение движения денежных средств для ДЗО (BP4-DZO)",
+        "zbp_d05_ocenka": "Прогноз движения денежных средств для ПК (BP4-P-PK)",
+        "bp4-q-pk-zbp_d03_ocenka": "Ежеквартальное исполнение движения денежных средств для ПК (BP4-Q-PK)",
+        "bp6-m-pk-zbp_d17_fact": "Ежемесячное исполнение отчета о прибылях и убытках и по производственным показателям для ПК (BP6-M-PK)",
+        "bp6-p-pk-zbp_d06_prognoz": "Прогнозный отчет о прибылях и убытках и по производственным показателям для ПК (BP6-P-PK)",
+        "bp6-q-pk-zbp_d17_fact_period": "Ежеквартальное исполнение отчета о прибылях и убытках и по производственным показателям для ПК (BP6-Q-PK)",
+        "zbp_d15_plan": "Ежемесячное исполнение отчета о прибылях и убытках и по производственным показателям для ДЗО (BP6-DZO)"
+      },
+
+      "footer": {
+        "rights": "© Все права защищены. 2024 Самрук-Казына"
+      },
+      "languageShort": {
+        "ru": "Рус",
+        "kz": "Қаз"
       }
-    })(),
-    kz: (() => {
-      try {
-        // Load from generated kz.json file at build time
-        return JSON.parse(`
-${require('fs').readFileSync('./locales/kz.json', 'utf-8')}
-        `);
-      } catch (e) {
-        console.error('Failed to embed KZ locale:', e);
-        return {};
+    },
+    "kz": {
+      "pageTitle": "API Құжаттамасы",
+      "languageName": "Қазақ тілі",
+      "breadcrumb": {
+        "home": "Басты бет",
+        "docs": "API құжаттамасы"
+      },
+      "nav": {
+        "home": "Басты бет",
+        "news": "Жаңалықтар",
+        "about": "Қор туралы",
+        "contacts": "Байланыс",
+        "back": "Артқа",
+        "forward": "Алға"
+      },
+      "headers": {
+        "page": "API Құжаттамасы",
+        "availableTables": "Қолжетімді кестелер",
+        "availableFolders": "Қолжетімді қалталар"
+      },
+      "tableHeaders": {
+        "field": "Өріс",
+        "description": "Сипаттама",
+        "valueExample": "Мысал мәні",
+        "notes": "Ескертпе"
+      },
+      "tables": {
+        "dsoTable": "ZBP_D08",
+        "dsoTable2": "ZBP_TEST1",
+        "dsoTable3": "ZBP_TEST2"
+      },
+      "folders": {
+          "BP3_balance": "БАЛАНС бойынша формалар",
+          "BP3_dds": "ҚҚА бойынша формалар",
+          "BP6_TFR": "ТФР формалары: Пайда мен залал есебі және өндірістік көрсеткіштер есебі",
+          "balance-ispoln": "Орындау балансы",
+          "BP3-DZO-balance-dzo": "3. DZO үшін баланс (BP3-DZO)",
+          "BP3-P-PK-predicted-balance": "1. ПК үшін болжамды баланс (BP3-P-PK)",
+          "BP3-Q-PK": "2. ПК орындау балансы (BP3-Q-PK)",
+          "BP4-DZO-dds": "3. DZO үшін айлық ҚҚА орындау есебі (BP4-DZO)",
+          "BP4-P-PK-predicted-dds": "1. ПК үшін ҚҚА болжамы (BP4-P-PK)",
+          "BP4-Q-PK-dds-ispoln": "2. ПК үшін тоқсан сайынғы ҚҚА орындау есебі (BP4-Q-PK)",
+          "BP6-M-PK-tfr-monthly": "3. ПК үшін ай сайынғы пайда мен залал және өндірістік көрсеткіштер есебі (BP6-M-PK)",
+          "BP6-P-PK_prognoz-tfr": "1. ПК үшін болжамды пайда мен залал және өндірістік көрсеткіштер есебі (BP6-P-PK)",
+          "BP6-Q-PK-TFR": "2. ПК үшін тоқсан сайынғы пайда мен залал және өндірістік көрсеткіштер есебі (BP6-Q-PK)",
+          "BP6-DZO-TFR": "4. DZO үшін ай сайынғы пайда мен залал және өндірістік көрсеткіштер есебі (BP6-DZO)"
+      },
+      "files": {
+          "zbp_d08_ocenka": "Орындау балансы",
+          "structure_zbp_d06_fact": "DZO үшін баланс (BP3-DZO)",
+          "bp3-p-pk_zbp_d06_ocenka": "ПК үшін болжамды баланс (BP3-P-PK)",
+          "zpb_d08": "ПК орындау балансы (BP3-Q-PK)",
+          "zbp_d03_fact": "DZO үшін ай сайынғы ҚҚА орындау есебі (BP4-DZO)",
+          "zbp_d05_ocenka": "ПК үшін ҚҚА болжамы (BP4-P-PK)",
+          "bp4-q-pk-zbp_d03_ocenka": "ПК үшін тоқсан сайынғы ҚҚА орындау есебі (BP4-Q-PK)",
+          "bp6-m-pk-zbp_d17_fact": "ПК үшін ай сайынғы пайда мен залал және өндірістік көрсеткіштер есебі (BP6-M-PK)",
+          "bp6-p-pk-zbp_d06_prognoz": "ПК үшін болжамды пайда мен залал және өндірістік көрсеткіштер есебі (BP6-P-PK)",
+          "bp6-q-pk-zbp_d17_fact_period": "ПК үшін тоқсан сайынғы пайда мен залал және өндірістік көрсеткіштер есебі (BP6-Q-PK)",
+          "zbp_d15_plan": "DZO үшін ай сайынғы пайда мен залал және өндірістік көрсеткіштер есебі (BP6-DZO)"
+      },
+
+
+      "footer": {
+        "rights": "© Барлық құқықтар қорғалған. 2024 Самрук-Казына"
+      },
+      "languageShort": {
+        "ru": "Рус",
+        "kz": "Қаз"
       }
-    })()
+    }
   };
 
   function getNested(obj, path) {

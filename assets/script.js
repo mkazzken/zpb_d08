@@ -16,29 +16,33 @@ const folderStructure = {
     },
 
     'BP3_dds': {
-        'BP4-DZO-dds': [
-            'zbp_d03_fact.json'
-        ],
+        
         'BP4-P-PK-predicted-dds': [
             'zbp_d05_ocenka.json'
         ],
         'BP4-Q-PK-dds-ispoln': [
             'bp4-q-pk-zbp_d03_ocenka.json'
+        ],
+        'BP4-DZO-dds': [
+            'zbp_d03_fact.json'
         ]
+        
+        
     },
 
     'BP6_TFR': {
-        'BP6-DZO-TFR': [
-            'zbp_d15_plan.json'
-        ],
-        'BP6-M-PK-tfr-monthly': [
-            'bp6-m-pk-zbp_d17_fact.json'
-        ],
+
         'BP6-P-PK_prognoz-tfr': [
             'bp6-p-pk-zbp_d06_prognoz.json'
         ],
         'BP6-Q-PK-TFR': [
             'bp6-q-pk-zbp_d17_fact_period.json'
+        ],
+        'BP6-M-PK-tfr-monthly': [
+            'bp6-m-pk-zbp_d17_fact.json'
+        ],
+        'BP6-DZO-TFR': [
+            'zbp_d15_plan.json'
         ]
     }
 };
