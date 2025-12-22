@@ -47,14 +47,14 @@
   "files": {
     "zbp_d08_ocenka": "1. ZBP_D08 деректер құрылымы (Бағалау)",
 
+    "bp3-p-pk_zbp_d06_ocenka": "1. ZBP_D06 деректер құрылымы (Бағалау)",
+    "bp3-p-pk_zbp_d06_plan": "2. ZBP_D06 деректер құрылымы (Жоспар)",
+    "bp3-p-pk_zbp_d06_prognoz": "3. ZBP_D06 деректер құрылымы (Болжам)",
+
     "structure_zbp_d06_fact": "1. ZBP_D06 деректер құрылымы (Нақты)",
     "structure_zbp_d06_ocenka": "2. ZBP_D06 деректер құрылымы (Бағалау)",
     "structure_zbp_d06_plan": "3. ZBP_D06 деректер құрылымы (Жоспар)",
     "structure_zbp_d06_prognoz": "ZBP_D06 деректер құрылымы (Болжам)",
-
-    "bp3-p-pk_zbp_d06_ocenka": "1. ZBP_D06 деректер құрылымы (Бағалау)",
-    "bp3-p-pk_zbp_d06_plan": "2. ZBP_D06 деректер құрылымы (Жоспар)",
-    "bp3-p-pk_zbp_d06_prognoz": "3. ZBP_D06 деректер құрылымы (Болжам)",
 
     "zpb_d08": "1. ZBP_D08 деректер құрылымы (Бағалау)",
 

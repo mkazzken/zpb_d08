@@ -1,29 +1,55 @@
 // Folder structure
 const folderStructure = {
     'BP3_balance': {
-        'balance-ispoln': ['zbp_d08_ocenka.json'],
-        'BP3-P-PK-predicted-balance': ['bp3-p-pk_zbp_d06_ocenka.json', 'bp3-p-pk_zbp_d06_plan.json', 'bp3-p-pk_zbp_d06_prognoz.json'],
-        'BP3-Q-PK' : ['zpb_d08.json'],
-        'BP3-DZO-balance-dzo': ['structure_zbp_d06_fact.json', 'structure_zbp_d06_ocenka.json', 'structure_zbp_d06_plan.json']
+        'balance-ispoln': [
+            'zbp_d08_ocenka.json'
+        ],
+        'BP3-P-PK-predicted-balance': [
+            'bp3-p-pk_zbp_d06_ocenka.json'
+        ],
+        'BP3-Q-PK': [
+            'zpb_d08.json'
+        ],
+        'BP3-DZO-balance-dzo': [
+            'structure_zbp_d06_fact.json'
+        ]
     },
+
     'BP3_dds': {
-        'BP4-DZO-dds': ['zbp_d03_fact.json', 'zbp_d03_ocenka.json', 'zbp_d03_plan.json'],
-        'BP4-P-PK-predicted-dds': ['zbp_d05_ocenka.json', 'zbp_d05_plan.json', 'zbp_d05_prognoz.json'],
-        'BP4-Q-PK-dds-ispoln': ['bp4-q-pk-zbp_d03_ocenka.json']
+        'BP4-DZO-dds': [
+            'zbp_d03_fact.json'
+        ],
+        'BP4-P-PK-predicted-dds': [
+            'zbp_d05_ocenka.json'
+        ],
+        'BP4-Q-PK-dds-ispoln': [
+            'bp4-q-pk-zbp_d03_ocenka.json'
+        ]
     },
+
     'BP6_TFR': {
-        'BP6-M-PK-tfr-monthly': ['bp6-m-pk-zbp_d17_fact.json', 'bp6-m-pk-zbp_d17_ocenka.json', 'bp6-m-pk-zbp_d17_text.json'],
-        'BP6-P-PK_prognoz-tfr': ['bp6-p-pk-zbp_d06_prognoz.json', 'bp6-p-pk-zbp_d15_ocenka.json', 'bp6-p-pk-zbp_d15_plan.json'],
-        'BP6-Q-PK-TFR': ['bp6-q-pk-zbp_d17_fact_period.json', 'bp6-q-pk-zbp_d17_ocenka.json', 'bp6-q-pk-zbp_d17_text.json'],
-        'BP-6-DZO-TFR': ['zbp_d17_plan.json', 'zbp_d17_ocenka.json', 'zbp_d15_ocenka.json']
+        'BP6-DZO-TFR': [
+            'zbp_d15_plan.json'
+        ],
+        'BP6-M-PK-tfr-monthly': [
+            'bp6-m-pk-zbp_d17_fact.json'
+        ],
+        'BP6-P-PK_prognoz-tfr': [
+            'bp6-p-pk-zbp_d06_prognoz.json'
+        ],
+        'BP6-Q-PK-TFR': [
+            'bp6-q-pk-zbp_d17_fact_period.json'
+        ]
     }
 };
+
 
 let currentPath = [];
 let currentTableId = null;
 let navigationHistory = []; 
 let currentHistoryIndex = -1;
 let isNavigatingHistory = false;
+
 
 function addToHistory(entry) {
     if (isNavigatingHistory) return;
@@ -130,7 +156,7 @@ function findPath(fileName) {
     return '';
 }
 
-// Load JSON data for a table
+// Load JSON data for a table from embedded data (no HTTP / fetch)
 function loadTableData(fileName) {
     const lang = getLang();
     let path = currentPath.slice(0, -1).join('/');
@@ -138,29 +164,34 @@ function loadTableData(fileName) {
         path = findPath(fileName);
     }
     console.log('Loading', fileName, 'path:', path, 'currentPath:', currentPath);
-    const jsonPath = `./data/${lang}/${path}/${fileName}`;
-    return fetch(jsonPath)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.text();
-        })
-        .then(text => {
-            // Remove BOM if present
-            if (text.charCodeAt(0) === 0xFEFF) {
-                text = text.slice(1);
-            }
-            return JSON.parse(text);
-        })
-        .then(data => {
-            const tableContainer = document.getElementById('tableContainer');
-            const fieldHeader = window.i18n?.t('tableHeaders.field') || 'Поле';
-            const descHeader = window.i18n?.t('tableHeaders.description') || 'Описание';
-            const exampleHeader = window.i18n?.t('tableHeaders.valueExample') || 'Пример значения';
-            const notesHeader = window.i18n?.t('tableHeaders.notes') || 'Примечание';
 
-            tableContainer.innerHTML = `
+    try {
+        if (!window.EMBEDDED_DATA) {
+            throw new Error('EMBEDDED_DATA is not available');
+        }
+
+        const [mainFolder, subFolder] = path.split('/');
+        if (!mainFolder || !subFolder) {
+            throw new Error(`Некорректный путь для данных: "${path}"`);
+        }
+
+        const data =
+            window.EMBEDDED_DATA?.[lang]?.[mainFolder]?.[subFolder]?.[fileName];
+
+        if (!data) {
+            throw new Error(
+                `Данные не найдены для ${lang}/${mainFolder}/${subFolder}/${fileName}`
+            );
+        }
+
+        const tableContainer = document.getElementById('tableContainer');
+        const fieldHeader = window.i18n?.t('tableHeaders.field') || 'ID Поля';
+        const descHeader = window.i18n?.t('tableHeaders.description') || 'Название поля';
+        const exampleHeader =
+            window.i18n?.t('tableHeaders.valueExample') || 'Описание';
+        const notesHeader = window.i18n?.t('tableHeaders.notes') || 'Пример';
+
+        tableContainer.innerHTML = `
                 <div class="card mb-4">
                     <div class="card-header">
                         <h3 class="mb-0">${fileName}</h3>
@@ -183,36 +214,37 @@ function loadTableData(fileName) {
                 </div>
             `;
 
-            const tbody = tableContainer.querySelector('tbody');
+        const tbody = tableContainer.querySelector('tbody');
 
-            if (!Array.isArray(data)) {
-                console.error(`Invalid data for ${fileName}:`, data);
-                tbody.innerHTML = '<tr><td colspan="4" class="text-center text-danger">Ошибка: данные не являются массивом.</td></tr>';
-                return;
-            }
+        if (!Array.isArray(data)) {
+            console.error(`Invalid data for ${fileName}:`, data);
+            tbody.innerHTML =
+                '<tr><td colspan="4" class="text-center text-danger">Ошибка: данные не являются массивом.</td></tr>';
+            return;
+        }
 
-            if (data.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="4" class="text-center text-muted">Нет данных для отображения.</td></tr>';
-                return;
-            }
+        if (data.length === 0) {
+            tbody.innerHTML =
+                '<tr><td colspan="4" class="text-center text-muted">Нет данных для отображения.</td></tr>';
+            return;
+        }
 
-            data.forEach(item => {
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
+        data.forEach(item => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
                     <td>${item.field || ''}</td>
                     <td>${item.description || ''}</td>
                     <td>${item.value_example || ''}</td>
                     <td>${item.notes || ''}</td>
                 `;
-                tbody.appendChild(tr);
-            });
+            tbody.appendChild(tr);
+        });
 
-            console.log(`Successfully loaded ${data.length} rows into ${fileName} (${lang})`);
-        })
-        .catch(error => {
-            console.error(`Error loading data for ${fileName}:`, error);
-            const tableContainer = document.getElementById('tableContainer');
-            tableContainer.innerHTML = `
+        console.log(`Successfully loaded ${data.length} rows into ${fileName} (${lang})`);
+    } catch (error) {
+        console.error(`Error loading data for ${fileName}:`, error);
+        const tableContainer = document.getElementById('tableContainer');
+        tableContainer.innerHTML = `
                 <div class="card mb-4">
                     <div class="card-body">
                         <div class="alert alert-danger">
@@ -221,7 +253,7 @@ function loadTableData(fileName) {
                     </div>
                 </div>
             `;
-        });
+    }
 }
 
 // Show folders/files at the given path

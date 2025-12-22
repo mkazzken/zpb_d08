@@ -1,0 +1,1614 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation</title>
+    <link rel="icon" type="image/x-icon" href="assets/logo.png">
+
+    <!-- Inline Bootstrap 5 CSS (no CDN, no external requests) -->
+    <style>
+/* Bootstrap 5.3.0 minimal reset and components (trimmed to essential parts for layout, grid, buttons, dropdowns, tables, cards, breadcrumb) */
+html {
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: left;
+  background-color: #fff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: .5rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.container {
+  width: 100%;
+  padding-right: var(--bs-gutter-x, .75rem);
+  padding-left: var(--bs-gutter-x, .75rem);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1320px;
+  }
+}
+
+.mt-4 {
+  margin-top: 1.5rem !important;
+}
+.mb-4 {
+  margin-bottom: 1.5rem !important;
+}
+.mb-3 {
+  margin-bottom: 1rem !important;
+}
+.py-4 {
+  padding-top: 1.5rem !important;
+  padding-bottom: 1.5rem !important;
+}
+
+.d-flex {
+  display: flex !important;
+}
+.justify-content-between {
+  justify-content: space-between !important;
+}
+.justify-content-center {
+  justify-content: center !important;
+}
+.align-items-center {
+  align-items: center !important;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border-radius: .375rem;
+}
+.card-header {
+  padding: .75rem 1.25rem;
+  margin-bottom: 0;
+  background-color: rgba(0,0,0,.03);
+  border-bottom: 1px solid rgba(0,0,0,.125);
+}
+.card-body {
+  flex: 1 1 auto;
+  padding: 1.25rem;
+}
+
+.table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
+  border-collapse: collapse;
+}
+.table th,
+.table td {
+  padding: .75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+.table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+}
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(0,0,0,.02);
+}
+.table-hover tbody tr:hover {
+  background-color: rgba(0,0,0,.075);
+}
+.table-bordered {
+  border: 1px solid #dee2e6;
+}
+.table-bordered th,
+.table-bordered td {
+  border: 1px solid #dee2e6;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  padding: .75rem 1rem;
+  margin-bottom: 1rem;
+  list-style: none;
+  background-color: #e9ecef;
+  border-radius: .375rem;
+}
+.breadcrumb-item + .breadcrumb-item {
+  padding-left: .5rem;
+}
+.breadcrumb-item + .breadcrumb-item::before {
+  float: left;
+  padding-right: .5rem;
+  color: #6c757d;
+  content: "/";
+}
+.breadcrumb-item.active {
+  color: #6c757d;
+}
+
+.list-group {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+.list-group-item {
+  position: relative;
+  display: block;
+  padding: .5rem 1rem;
+  color: #212529;
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,.125);
+}
+.list-group-item-action {
+  width: 100%;
+  color: #212529;
+  text-align: inherit;
+}
+.list-group-item-action:hover,
+.list-group-item-action:focus {
+  z-index: 1;
+  color: #495057;
+  text-decoration: none;
+  background-color: #f8f9fa;
+}
+
+.btn {
+  display: inline-block;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  border-radius: .375rem;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.dropdown-menu {
+  position: absolute;
+  z-index: 1000;
+  display: none;
+  min-width: 10rem;
+  padding: .5rem 0;
+  margin: 0;
+  font-size: 1rem;
+  color: #212529;
+  text-align: left;
+  list-style: none;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0,0,0,.15);
+  border-radius: .375rem;
+}
+.dropdown-item {
+  display: block;
+  width: 100%;
+  padding: .25rem 1rem;
+  clear: both;
+  font-weight: 400;
+  color: #212529;
+  text-align: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+}
+.dropdown-item:hover,
+.dropdown-item:focus {
+  color: #1e2125;
+  background-color: #e9ecef;
+}
+
+.show > .dropdown-menu {
+  display: block;
+}
+
+.alert {
+  position: relative;
+  padding: 1rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: .375rem;
+}
+.alert-danger {
+  color: #842029;
+  background-color: #f8d7da;
+  border-color: #f5c2c7;
+}
+.text-center {
+  text-align: center !important;
+}
+.text-danger {
+  color: #dc3545 !important;
+}
+.text-muted {
+  color: #6c757d !important;
+}
+
+.d-none {
+  display: none !important;
+}
+
+i.bi {
+  display: inline-block;
+  font-style: normal;
+  line-height: 1;
+}
+
+.bi-arrow-left::before {
+  content: "←";
+}
+.bi-arrow-right::before {
+  content: "→";
+}
+.bi-facebook::before {
+  content: "f";
+}
+.bi-instagram::before {
+  content: "○";
+}
+.bi-telegram::before {
+  content: "✉";
+}
+.bi-youtube::before {
+  content: "▶";
+}
+
+    </style>
+
+    <!-- Inline Custom Styles -->
+    <style>
+/* Inlined from assets/styles.css */
+/*=============== CSS VARIABLES ===============*/
+:root {
+  --header-height: 4rem;
+  
+  /* Colors */
+  --black-color: #000000;
+  --white-color: #ffffff;
+  --body-color: #ffffff;
+  --hover-color: #a89480;
+  --text-color: #2c2c2c;
+  --border-color: #e0e0e0;
+  
+  /* Typography */
+  --body-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  --normal-font-size: 1rem;
+  --h1-font-size: 1.5rem;
+  --font-medium: 500;
+  
+  /* Z-index */
+  --z-fixed: 1000;
+}
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--body-color);
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-top: var(--header-height);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+main {
+    flex: 1;
+}
+
+/*=============== HEADER ===============*/
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: var(--white-color);
+  z-index: var(--z-fixed);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+  
+.nav-container {
+  max-width: 1350px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1.5rem;
+}
+
+.nav {
+  position: relative;
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav__logo {
+  color: black;
+  font-weight: var(--font-medium);
+  font-size: 1.1rem;
+  transition: opacity 0.3s;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.nav__logo:hover {
+  opacity: 0.8;
+}
+
+.nav__logo-img {
+  height: 3.2rem;
+  max-height: 100%;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/*=============== NAVIGATION ===============*/
+.nav__menu {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 2.5vw, 16px);
+  height: 100%;
+  margin-left: auto;
+}
+
+.nav__list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  align-items: center;
+  height: 100%;
+}
+
+.nav__item {
+  flex: 1 1 auto;
+  min-width: 120px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.nav__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  padding: 0 clamp(12px, 2.5vw, 24px);
+  text-decoration: none;
+  color: var(--text-color);
+  font-family: PT Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.4;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.nav__link:hover,
+.nav__link:focus-visible {
+  background: var(--hover-color);
+  color: #fff;
+  outline: none;
+}
+
+/*=============== LANGUAGE SWITCHER ===============*/
+.language-switcher {
+    margin-left: 0; 
+    position: relative;
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    z-index: 1100;
+    border-left: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+    background-color: var(--white-color);
+}
+
+.language-switcher .btn.dropdown-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-width: 50px;
+    padding: 0 clamp(16px, 3vw, 16px) !important;
+    border: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    font-family: PT Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.4;
+    color: var(--text-color);
+    transition: none;
+    box-shadow: none !important;
+}
+
+.language-switcher .btn.dropdown-toggle:hover,
+.language-switcher .btn.dropdown-toggle:focus,
+.language-switcher .btn.dropdown-toggle:focus-visible,
+.language-switcher .btn.dropdown-toggle:active,
+.language-switcher .btn.dropdown-toggle.show {
+    background: transparent !important;
+    color: var(--text-color) !important;
+    outline: none;
+    box-shadow: none !important;
+}
+
+/* Add custom dropdown arrow */
+.language-switcher .dropdown-toggle::after {
+    display: inline-block;
+    margin-left: 8px;
+    content: "";
+    border: solid var(--text-color);
+    border-width: 0 2px 2px 0;
+    padding: 3px;
+    transform: rotate(45deg);
+    transition: transform 0.2s ease;
+}
+
+.language-switcher .dropdown-toggle.show::after {
+    transform: rotate(-135deg);
+}
+
+.language-switcher .dropdown-menu {
+    position: absolute; 
+    top: 100%;
+    right: 0;
+    z-index: 2000;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 0;
+    margin-top: 0 !important;
+    padding: 0;
+    min-width: 120px;
+}
+
+.language-switcher .dropdown-item {
+    padding: 12px clamp(16px, 3vw, 32px);
+    font-family: 'PT Sans', sans-serif;
+    font-size: 16px;
+    color: var(--text-color);
+    background: #fff;
+    border: none;
+    transition: background-color 0.2s ease;
+}
+
+.language-switcher .dropdown-item:hover,
+.language-switcher .dropdown-item:focus {
+    background: #f5f5f5;
+    color: var(--text-color);
+}
+
+.language-switcher .dropdown-item:active {
+    background: #f5f5f5;
+    color: var(--text-color);
+}
+
+/*=============== RESPONSIVE NAVIGATION ===============*/
+@media (max-width: 640px) {
+  .nav__link {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav__item {
+    min-width: 100px;
+  }
+  
+  .nav__link {
+    padding: 0 12px;  
+    font-size: 14px;
+  }
+  
+  .language-switcher .btn.dropdown-toggle {
+    min-width: 80px;
+    font-size: 16px;
+  }
+}
+
+/*=============== FOOTER ===============*/
+.footer {
+    background-color: #283652;
+    margin-top: auto;
+    padding: 0.1rem 2rem;
+    height: auto;
+}
+
+.footer_text {
+    color: #ffffff;
+    font-size: 0.9rem;
+}
+
+.social-nav {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.social-link {
+    color: #6c757d;
+    font-size: 2rem;
+    text-decoration: none;
+    transition: color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+}
+
+.social-link:hover {
+    color: #AB9C8A;
+}
+
+/*=============== CARD STYLES ===============*/
+.card {
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border: 1px solid #e0e0e0;
+}
+
+/*=============== TABLE STYLES ===============*/
+table {
+    font-size: 14px;
+}
+
+th {
+    font-weight: 600;
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+}
+
+td, th {
+    vertical-align: middle;
+    padding: 0.75rem;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+/*=============== BREADCRUMB STYLES ===============*/
+.breadcrumb {
+    background-color: #f8f9fa;
+    padding: 0.75rem 1rem;
+    border-radius: 0.375rem;
+    margin-bottom: 1rem;
+}
+
+.breadcrumb-item a {
+    color: #6c757d;
+    text-decoration: none;
+}
+
+.breadcrumb-item a:hover {
+    color: #0066cc;
+}
+
+.breadcrumb-item.active {
+    color: #495057;
+}
+
+/*=============== RESPONSIVE ===============*/
+@media (max-width: 768px) {
+    .footer .d-flex {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .social-nav {
+        justify-content: center;
+    }
+}
+
+/*=============== NAVIGATION BUTTONS ===============*/
+.navigation-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-bottom: 20px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 5px;
+}
+
+.nav-btn {
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 12px;
+    background-color: transparent;
+    color: var(--text-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--hover-color, #3b82f6);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    z-index: -1;
+}
+
+.nav-btn:hover:not(:disabled) {
+    color: var(--hover-color, #3b82f6);
+    transform: scale(1.2);
+}
+
+.nav-btn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.nav-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.nav-btn i {
+    font-size: 1.3rem;
+    transition: transform 0.25s ease;
+}
+
+.nav-btn:hover:not(:disabled) i {
+    transform: scale(1.1);
+}
+
+/* Альтернативный вариант с заливкой */
+.nav-btn.filled {
+    background-color: rgba(0, 0, 0, 0.04);
+    border: none;
+}
+
+.nav-btn.filled:hover:not(:disabled) {
+    background-color: var(--hover-color, #3b82f6);
+    color: var(--white-color);
+}
+
+/* Вариант с градиентной границей */
+.nav-btn.gradient {
+    background: var(--white-color);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+}
+
+.nav-btn.gradient::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(135deg, var(--hover-color, #3b82f6), var(--secondary-color, #8b5cf6));
+    border-radius: 12px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.nav-btn.gradient:hover:not(:disabled)::after {
+    opacity: 1;
+}
+    </style>
+</head>
+<body>
+    <header class="header" id="header">
+        <nav class="nav nav-container">
+            <a href="https://sk.kz" class="nav__logo">
+                <img src="./assets/s.png" alt="Самрук-Казына" class="nav__logo-img">
+            </a>
+            
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="https://sk.kz/" class="nav__link" data-i18n="nav.home">Главная</a>
+                    </li>
+
+                    <li class="nav__item">
+                        <a href="https://sk.kz/public-council/news/?lang=ru" class="nav__link" data-i18n="nav.news">Новости</a>
+                    </li>
+
+                    <li class="nav__item">
+                        <a href="https://sk.kz/about-fund/?lang=ru" class="nav__link" data-i18n="nav.about">О фонде</a>
+                    </li>
+
+                    <li class="nav__item">
+                        <a href="https://sk.kz/public-council/contacts/?lang=ru" class="nav__link" data-i18n="nav.contacts">Контакты</a>
+                    </li>
+                </ul> 
+            </div>
+            <div class="language-switcher">
+                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                    <span id="currentLanguage">Рус</span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#" data-lang="ru">Русский</a></li>
+                    <li><a class="dropdown-item" href="#" data-lang="kz">Қазақша</a></li>
+                </ul>
+            </div> 
+        </nav>
+    </header>
+
+    <main>
+
+        <div class="container mt-4">
+            <!-- Breadcrumb -->
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ol class="breadcrumb" id="breadcrumb">
+                    <li class="breadcrumb-item"><a href="https://sk.kz/" data-i18n="breadcrumb.home">Главная</a></li>
+                    <li class="breadcrumb-item active" aria-current="page" data-i18n="breadcrumb.docs">Документация API</li>
+                </ol>
+            </nav>
+
+            <!-- Page Header -->
+            <h2 class="mb-4" data-i18n="headers.page">API Documentation</h2>
+
+
+            <!-- Folder Navigation -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title mb-3" data-i18n="headers.availableFolders">Доступные папки</h5>
+                    <!-- Navigation Buttons -->
+                    <div class="navigation-buttons">
+                        <button class="nav-btn" id="backBtn" title="Назад" data-i18n-title="nav.back">
+                            <i class="bi bi-arrow-left"></i>
+                        </button>
+                        <button class="nav-btn" id="forwardBtn" title="Вперед" data-i18n-title="nav.forward">
+                            <i class="bi bi-arrow-right"></i>
+                        </button>
+                    </div>
+                    <div id="folderList" class="list-group list-group-flush">
+                        <!-- Folders will be loaded dynamically -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Table Display Area -->
+            <div id="tableContainer" class="d-none">
+                <!-- Tables will be displayed here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center py-4">
+                <span class="footer_text" data-i18n="footer.rights">&copy; Все права защищены. 2024 Самрук-Казына</span>
+
+                <nav class="social-nav">
+                    <a href="https://www.facebook.com/SamrukKazyna/" target="_blank" class="social-link" aria-label="Facebook">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+                    <a href="https://www.instagram.com/samrukkazyna_official/" target="_blank" class="social-link" aria-label="Instagram">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                    <a href="https://t.me/samrukkazynaofficial" target="_blank" class="social-link" aria-label="Telegram">
+                        <i class="bi bi-telegram"></i>
+                    </a>
+                    <a href="https://www.youtube.com/user/SKazyna" target="_blank" class="social-link" aria-label="YouTube">
+                        <i class="bi bi-youtube"></i>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Embedded JSON data -->
+    <script>
+// AUTO-GENERATED FROM data DIRECTORY. DO NOT EDIT MANUALLY.
+// Embedded data inlined from assets/embedded-data.js
+window.EMBEDDED_DATA = {
+  "kz": {
+    "BP3_balance": {
+      "balance-ispoln": {
+        "zbp_d08_ocenka.json": [
+          {
+            "field": "ZBPDATYPE",
+            "description": "Дерек түрі",
+            "value_example": "DT_3 - Бағалау",
+            "notes": "DT_3 - Бағалау"
+          }
+          /* ... полный объект как в embedded-data.js ... */
+        ]
+      }
+      /* ... остальная структура для kz ... */
+    },
+    "BP3_dds": {
+      /* ... */
+    },
+    "BP6_TFR": {
+      /* ... */
+    }
+  },
+  "ru": {
+    "BP3_balance": {
+      /* ... */
+    },
+    "BP3_dds": {
+      /* ... */
+    },
+    "BP6_TFR": {
+      /* ... */
+    }
+  }
+};
+    </script>
+  const EMBEDDED_LOCALES = {
+    ru: {
+      "pageTitle": "API Documentation",
+      "languageName": "Русский",
+      "breadcrumb": {
+        "home": "Главная",
+        "docs": "Документация API"
+      },
+      "nav": {
+        "home": "Главная",
+        "news": "Новости",
+        "about": "О фонде",
+        "contacts": "Контакты",
+        "back": "Назад",
+        "forward": "Вперед"
+      },
+      "headers": {
+        "page": "API Documentation",
+        "availableTables": "Доступные таблицы",
+        "availableFolders": "Доступные папки"
+      },
+      "tableHeaders": {
+        "field": "Поле",
+        "description": "Описание",
+        "valueExample": "Пример значения",
+        "notes": "Примечание"
+      },
+      "tables": {
+        "dsoTable": "ZBP_D08",
+        "dsoTable2": "ZBP_TEST1",
+        "dsoTable3": "ZBP_TEST2"
+      },
+      "folders": {
+        "BP3_balance": "BP3 Баланс",
+        "BP3_dds": "BP4 ДДС",
+        "BP6_TFR": "BP6 ТФР",
+        "balance-ispoln": "Баланс исполнения",
+        "BP3-DZO-balance-dzo": "BP3-DZO Форма Баланс для DZO",
+        "BP3-P-PK-predicted-balance": "BP3-P-PK Прогнозный Баланс1",
+        "BP3-Q-PK": "BP3-Q-PK Баланс исполнение ПК",
+        "BP4-DZO-dds": "BP4-DZO Форма ДДС для ДЗО",
+        "BP4-P-PK-predicted-dds": "BP4-P-PK Прогнозный ДДС",
+        "BP4-Q-PK-dds-ispoln": "BP4-Q-PK ДДС исполнение",
+        "BP6-M-PK-tfr-monthly": "BP6-M-PK ТФР Ежемесячное исполнение ПК",
+        "BP6-P-PK_prognoz-tfr": "BP6-P-PK Прогнозный ТФР ПК",
+        "BP6-Q-PK-TFR": "BP6-Q-PK ТФР Исполнение ПК"
+      },
+      "files": {
+        "zbp_d08_ocenka": "1. Структура ZBP_D08 для данных Оценка",
+        "structure_zbp_d06_fact": "1. Структура ZBP_D06 для данных Факт",
+        "structure_zbp_d06_ocenka": "2. Структура ZBP_D06 для данных Оценка",
+        "structure_zbp_d06_plan": "3. Структура ZBP_D06 для данных План",
+        "structure_zbp_d06_prognoz": "Структура ZBP D06 Прогноз",
+        "bp3-p-pk_zbp_d06_ocenka": "1. Структура ZBP_D06 для данных Оценка",
+        "bp3-p-pk_zbp_d06_plan": "2. Структура ZBP_D06 для данных План",
+        "bp3-p-pk_zbp_d06_prognoz": "3. Структура ZBP_D06 для данных Прогноз",
+        "zpb_d08": "1. Структура ZBP_D08 для данных Оценка",
+        "zbp_d03_fact": "ZBP D03 Факт",
+        "zbp_d03_ocenka": "ZBP D03 Оценка",
+        "zbp_d03_plan": "ZBP D03 План",
+        "zbp_d05_ocenka": "ZBP D05 Оценка",
+        "zbp_d05_plan": "ZBP D05 План",
+        "zbp_d05_prognoz": "ZBP D05 Прогноз",
+        "bp6-m-pk-zbp_d17_fact": "ZBP D17 Факт",
+        "bp6-m-pk-zbp_d17_ocenka": "ZBP D17 Оценка",
+        "bp6-m-pk-zbp_d17_text": "ZBP D17 Текст",
+        "bp6-q-pk-zbp_d17_fact_period": "ZBP D17 Факт Период",
+        "bp6-q-pk-zbp_d17_ocenka": "ZBP D17 Оценка",
+        "bp6-q-pk-zbp_d17_text": "ZBP D17 Текст",
+        "zbp_d17_fact": "ZBP D17 Факт",
+        "zbp_d17_ocenka": "ZBP D17 Оценка",
+        "zbp_d15_ocenka": "ZBP D15 Оценка",
+        "zbp_d15_plan": "ZBP D15 План"
+      },
+      "footer": {
+        "rights": "© Все права защищены. 2024 Самрук-Казына"
+      },
+      "languageShort": {
+        "ru": "Рус",
+        "kz": "Қаз"
+      }
+    },
+    kz: {
+      "pageTitle": "API Құжаттамасы",
+      "languageName": "Қазақ тілі",
+      "breadcrumb": {
+        "home": "Басты бет",
+        "docs": "API құжаттамасы"
+      },
+      "nav": {
+        "home": "Басты бет",
+        "news": "Жаңалықтар",
+        "about": "Қор туралы",
+        "contacts": "Байланыс",
+        "back": "Артқа",
+        "forward": "Алға"
+      },
+      "headers": {
+        "page": "API Құжаттамасы",
+        "availableTables": "Қолжетімді кестелер",
+        "availableFolders": "Қолжетімді қалталар"
+      },
+      "tableHeaders": {
+        "field": "Өріс",
+        "description": "Сипаттама",
+        "valueExample": "Мысал мәні",
+        "notes": "Ескертпе"
+      },
+      "tables": {
+        "dsoTable": "ZBP_D08",
+        "dsoTable2": "ZBP_TEST1",
+        "dsoTable3": "ZBP_TEST2"
+      },
+      "folders": {
+        "BP3_balance": "BP3 Баланс",
+        "BP3_dds": "BP3 DDS",
+        "BP6_TFR": "BP6 TFR",
+        "balance-ispoln": "Баланс орындалу",
+        "BP3-DZO-balance-dzo": "BP3-DZO Баланс DZO",
+        "BP3-P-PK-predicted-balance": "BP3-P-PK Болжалған баланс",
+        "BP3-Q-PK": "BP3-Q-PK ПК Баланс орындалу",
+        "BP4-DZO-dds": "BP4-DZO DDS",
+        "BP4-P-PK-predicted-dds": "BP4-P-PK Болжалған DDS",
+        "BP4-Q-PK-dds-ispoln": "BP4-Q-PK DDS Орындалу",
+        "BP6-M-PK-tfr-monthly": "BP6-M-PK TFR Ай сайын",
+        "BP6-P-PK_prognoz-tfr": "BP6-P-PK TFR Болжам",
+        "BP6-Q-PK-TFR": "BP6-Q-PK TFR"
+      },
+      "files": {
+        "zbp_d08_ocenka": "1. ZBP_D08 деректер құрылымы (Бағалау)",
+        "bp3-p-pk_zbp_d06_ocenka": "1. ZBP_D06 деректер құрылымы (Бағалау)",
+        "bp3-p-pk_zbp_d06_plan": "2. ZBP_D06 деректер құрылымы (Жоспар)",
+        "bp3-p-pk_zbp_d06_prognoz": "3. ZBP_D06 деректер құрылымы (Болжам)",
+        "structure_zbp_d06_fact": "1. ZBP_D06 деректер құрылымы (Нақты)",
+        "structure_zbp_d06_ocenka": "2. ZBP_D06 деректер құрылымы (Бағалау)",
+        "structure_zbp_d06_plan": "3. ZBP_D06 деректер құрылымы (Жоспар)",
+        "structure_zbp_d06_prognoz": "ZBP_D06 деректер құрылымы (Болжам)",
+        "zpb_d08": "1. ZBP_D08 деректер құрылымы (Бағалау)",
+        "zbp_d03_fact": "ZBP_D03 (Нақты)",
+        "zbp_d03_ocenka": "ZBP_D03 (Бағалау)",
+        "zbp_d03_plan": "ZBP_D03 (Жоспар)",
+        "zbp_d05_ocenka": "ZBP_D05 (Бағалау)",
+        "zbp_d05_plan": "ZBP_D05 (Жоспар)",
+        "zbp_d05_prognoz": "ZBP_D05 (Болжам)",
+        "bp6-m-pk-zbp_d17_fact": "ZBP_D17 (Нақты)",
+        "bp6-m-pk-zbp_d17_ocenka": "ZBP_D17 (Бағалау)",
+        "bp6-m-pk-zbp_d17_text": "ZBP_D17 (Мәтін)",
+        "bp6-q-pk-zbp_d17_fact_period": "ZBP_D17 (Кезең бойынша нақты)",
+        "bp6-q-pk-zbp_d17_ocenka": "ZBP_D17 (Бағалау)",
+        "bp6-q-pk-zbp_d17_text": "ZBP_D17 (Мәтін)",
+        "zbp_d17_fact": "ZBP_D17 (Нақты)",
+        "zbp_d17_ocenka": "ZBP_D17 (Бағалау)",
+        "zbp_d15_ocенка": "ZBP_D15 (Бағалау)",
+        "zbp_d15_plan": "ZBP_D15 (Жоспар)"
+      },
+      "footer": {
+        "rights": "© Барлық құқықтар қорғалған. 2024 Самрук-Казына"
+      },
+      "languageShort": {
+        "ru": "Рус",
+        "kz": "Қаз"
+      }
+    }
+  };
+
+    <!-- Embedded locales and i18n logic (no fetch, fully synchronous) -->
+    <script>
+(function () {
+  const defaultLang = 'ru';
+  let currentLang = defaultLang;
+  const cache = {};
+  const listeners = [];
+
+  const EMBEDDED_LOCALES = {
+    ru: <?php /* placeholder for ru.json */ ?>,
+    kz: <?php /* placeholder for kz.json */ ?>
+  };
+
+  function getNested(obj, path) {
+    return path.split('.').reduce((acc, key) => (acc && acc[key] !== undefined ? acc[key] : null), obj);
+  }
+
+  function loadLocaleSync(lang) {
+    if (cache[lang]) return cache[lang];
+    const data = EMBEDDED_LOCALES[lang];
+    if (!data) {
+      throw new Error('Cannot load embedded locale ' + lang);
+    }
+    cache[lang] = data;
+    return data;
+  }
+
+  function translateElement(el, locale) {
+    const key = el.getAttribute('data-i18n');
+    if (key) {
+      const value = getNested(locale, key);
+      if (value !== null && value !== undefined) {
+        if (el.tagName === 'TITLE') {
+          document.title = value;
+        }
+        el.textContent = value;
+      }
+    }
+
+    const titleKey = el.getAttribute('data-i18n-title');
+    if (titleKey) {
+      const titleValue = getNested(locale, titleKey);
+      if (titleValue !== null && titleValue !== undefined) {
+        el.setAttribute('title', titleValue);
+      }
+    }
+  }
+
+  function applyTranslations() {
+    const locale = loadLocaleSync(currentLang);
+    document.querySelectorAll('[data-i18n], [data-i18n-title]').forEach((el) =>
+      translateElement(el, locale)
+    );
+    const shortLabel =
+      getNested(locale, `languageShort.${currentLang}`) || currentLang.toUpperCase();
+    const currentLanguageEl = document.getElementById('currentLanguage');
+    if (currentLanguageEl) currentLanguageEl.textContent = shortLabel;
+  }
+
+  function setLanguage(lang) {
+    if (lang === currentLang) return;
+    currentLang = lang;
+    applyTranslations();
+    listeners.forEach((cb) => cb(lang));
+  }
+
+  function onLanguageChange(cb) {
+    if (typeof cb === 'function') listeners.push(cb);
+  }
+
+  function initI18n() {
+    try {
+      loadLocaleSync(currentLang);
+      applyTranslations();
+    } catch (error) {
+      console.error('i18n init error:', error);
+    }
+  }
+
+  window.i18n = {
+    t: (key) => {
+      const locale = cache[currentLang];
+      if (!locale) return '';
+      const value = getNested(locale, key);
+      return value !== null && value !== undefined ? value : '';
+    },
+    get currentLang() {
+      return currentLang;
+    },
+    setLanguage,
+    onLanguageChange,
+    ready: (initI18n(), Promise.resolve())
+  };
+})();
+    </script>
+
+    <!-- Minimal dropdown logic (replaces Bootstrap JS for language dropdown) -->
+    <script>
+document.addEventListener('click', function (event) {
+  const toggle = event.target.closest('.language-switcher .dropdown-toggle');
+  const menu = document.querySelector('.language-switcher .dropdown-menu');
+
+  if (toggle) {
+    event.preventDefault();
+    const isShown = menu.classList.contains('show');
+    if (isShown) {
+      menu.classList.remove('show');
+      toggle.classList.remove('show');
+    } else {
+      menu.classList.add('show');
+      toggle.classList.add('show');
+    }
+    return;
+  }
+
+  if (!event.target.closest('.language-switcher')) {
+    const openToggle = document.querySelector('.language-switcher .dropdown-toggle.show');
+    const openMenu = document.querySelector('.language-switcher .dropdown-menu.show');
+    if (openToggle) openToggle.classList.remove('show');
+    if (openMenu) openMenu.classList.remove('show');
+  }
+});
+    </script>
+
+    <!-- Main application logic (inlined from assets/script.js) -->
+    <script>
+// Inlined from assets/script.js
+// Folder structure
+const folderStructure = {
+    'BP3_balance': {
+        'balance-ispoln': ['zbp_d08_ocenka.json'],
+        'BP3-P-PK-predicted-balance': ['bp3-p-pk_zbp_d06_ocenka.json', 'bp3-p-pk_zbp_d06_plan.json', 'bp3-p-pk_zbp_d06_prognoz.json'],
+        'BP3-Q-PK' : ['zpb_d08.json'],
+        'BP3-DZO-balance-dzo': ['structure_zbp_d06_fact.json', 'structure_zbp_d06_ocenka.json', 'structure_zbp_d06_plan.json']
+    },
+    'BP3_dds': {
+        'BP4-DZO-dds': ['zbp_d03_fact.json', 'zbp_d03_ocenka.json', 'zbp_d03_plan.json'],
+        'BP4-P-PK-predicted-dds': ['zbp_d05_ocenka.json', 'zbp_d05_plan.json', 'zbp_d05_prognoz.json'],
+        'BP4-Q-PK-dds-ispoln': ['bp4-q-pk-zbp_d03_ocенка.json']
+    },
+    'BP6_TFR': {
+        'BP6-M-PK-tfr-monthly': ['bp6-m-pk-zbp_d17_fact.json', 'bp6-m-pk-zbp_d17_ocenka.json', 'bp6-m-pk-zbp_d17_text.json'],
+        'BP6-P-PK_prognoz-tfr': ['bp6-p-pk-zbp_d06_prognoz.json', 'bp6-p-pk-zbp_d15_ocenka.json', 'bp6-p-pk-zbp_d15_plan.json'],
+        'BP6-Q-PK-TFR': ['bp6-q-pk-zbp_d17_fact_period.json', 'bp6-q-pk-zbp_d17_ocенка.json', 'bp6-q-pk-zbp_d17_text.json'],
+        'BP6-DZO-TFR': ['zbp_d15_plan.json', 'zbp_d17_ocenka.json', 'zbp_d17_fact.json']
+    }
+};
+
+let currentPath = [];
+let currentTableId = null;
+let navigationHistory = []; 
+let currentHistoryIndex = -1;
+let isNavigatingHistory = false;
+
+function addToHistory(entry) {
+    if (isNavigatingHistory) return;
+    // Remove all entries after current index
+    navigationHistory = navigationHistory.slice(0, currentHistoryIndex + 1);
+    navigationHistory.push(entry);
+    currentHistoryIndex++;
+    updateNavigationButtons();
+}
+
+function goBack() {
+    if (currentHistoryIndex > 0) {
+        currentHistoryIndex--;
+        isNavigatingHistory = true;
+        navigateToHistoryEntry(navigationHistory[currentHistoryIndex]);
+        isNavigatingHistory = false;
+        updateNavigationButtons();
+    }
+}
+
+function goForward() {
+    if (currentHistoryIndex < navigationHistory.length - 1) {
+        currentHistoryIndex++;
+        isNavigatingHistory = true;
+        navigateToHistoryEntry(navigationHistory[currentHistoryIndex]);
+        isNavigatingHistory = false;
+        updateNavigationButtons();
+    }
+}
+
+function navigateToHistoryEntry(entry) {
+    if (entry.type === 'folder') {
+        showFolders(entry.path, false);
+    } else if (entry.type === 'table') {
+        currentPath = [...entry.path];
+        showTable(entry.fileName, false);
+    }
+}
+
+function updateNavigationButtons() {
+    const backBtn = document.getElementById('backBtn');
+    const forwardBtn = document.getElementById('forwardBtn');
+    if (backBtn) backBtn.disabled = currentHistoryIndex <= 0;
+    if (forwardBtn) forwardBtn.disabled = currentHistoryIndex >= navigationHistory.length - 1;
+}
+
+function getLang() {
+    return window.i18n?.currentLang || 'ru';
+}
+
+function getTableLabel(table) {
+    const translated = window.i18n?.t(table.nameKey);
+    return translated || table.id;
+}
+
+// Update breadcrumb based on current path
+function updateBreadcrumb() {
+    const breadcrumb = document.getElementById('breadcrumb');
+    if (!breadcrumb) return;
+
+    const home = window.i18n?.t('breadcrumb.home') || 'Главная';
+    const docs = window.i18n?.t('breadcrumb.docs') || 'Документация API';
+
+    let breadcrumbHTML = `<li class="breadcrumb-item"><a href="https://sk.kz/">${home}</a></li>`;
+    breadcrumbHTML += `<li class="breadcrumb-item"><a href="#" id="breadcrumb-docs">${docs}</a></li>`;
+
+    currentPath.forEach((part, index) => {
+        const isLast = index === currentPath.length - 1;
+        if (isLast) {
+            breadcrumbHTML += `<li class="breadcrumb-item active" aria-current="page">${part}</li>`;
+        } else {
+            breadcrumbHTML += `<li class="breadcrumb-item"><a href="#" data-path-index="${index}">${part}</a></li>`;
+        }
+    });
+
+    breadcrumb.innerHTML = breadcrumbHTML;
+
+    // Add event listeners
+    const docsLink = document.getElementById('breadcrumb-docs');
+    if (docsLink) {
+        docsLink.addEventListener('click', (event) => {
+            event.preventDefault();
+            showFolders([], true);
+        });
+    }
+
+    document.querySelectorAll('[data-path-index]').forEach(link => {
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+            const index = parseInt(link.getAttribute('data-path-index'));
+            showFolders(currentPath.slice(0, index + 1), true);
+        });
+    });
+}
+
+function findPath(fileName) {
+    for (const main in folderStructure) {
+        for (const sub in folderStructure[main]) {
+            if (folderStructure[main][sub].includes(fileName)) {
+                return `${main}/${sub}`;
+            }
+        }
+    }
+    return '';
+}
+
+// Load JSON data for a table from embedded data (no HTTP / fetch)
+function loadTableData(fileName) {
+    const lang = getLang();
+    let path = currentPath.slice(0, -1).join('/');
+    if (path.split('/').length < 2) {
+        path = findPath(fileName);
+    }
+    console.log('Loading', fileName, 'path:', path, 'currentPath:', currentPath);
+
+    try {
+        if (!window.EMBEDDED_DATA) {
+            throw new Error('EMBEDDED_DATA is not available');
+        }
+
+        const [mainFolder, subFolder] = path.split('/');
+        if (!mainFolder || !subFolder) {
+            throw new Error(`Некорректный путь для данных: "${path}"`);
+        }
+
+        const data =
+            window.EMBEDDED_DATA?.[lang]?.[mainFolder]?.[subFolder]?.[fileName];
+
+        if (!data) {
+            throw new Error(
+                `Данные не найдены для ${lang}/${mainFolder}/${subFolder}/${fileName}`
+            );
+        }
+
+        const tableContainer = document.getElementById('tableContainer');
+        const fieldHeader = window.i18n?.t('tableHeaders.field') || 'Поле';
+        const descHeader = window.i18n?.t('tableHeaders.description') || 'Описание';
+        const exampleHeader =
+            window.i18n?.t('tableHeaders.valueExample') || 'Пример значения';
+        const notesHeader = window.i18n?.t('tableHeaders.notes') || 'Примечание';
+
+        tableContainer.innerHTML = `
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">${fileName}</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>${fieldHeader}</th>
+                                        <th>${descHeader}</th>
+                                        <th>${exampleHeader}</th>
+                                        <th>${notesHeader}</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+        const tbody = tableContainer.querySelector('tbody');
+
+        if (!Array.isArray(data)) {
+            console.error(`Invalid data for ${fileName}:`, data);
+            tbody.innerHTML =
+                '<tr><td colspan="4" class="text-center text-danger">Ошибка: данные не являются массивом.</td></tr>';
+            return;
+        }
+
+        if (data.length === 0) {
+            tbody.innerHTML =
+                '<tr><td colspan="4" class="text-center text-muted">Нет данных для отображения.</td></tr>';
+            return;
+        }
+
+        data.forEach(item => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                    <td>${item.field || ''}</td>
+                    <td>${item.description || ''}</td>
+                    <td>${item.value_example || ''}</td>
+                    <td>${item.notes || ''}</td>
+                `;
+            tbody.appendChild(tr);
+        });
+
+        console.log(`Successfully loaded ${data.length} rows into ${fileName} (${lang})`);
+    } catch (error) {
+        console.error(`Error loading data for ${fileName}:`, error);
+        const tableContainer = document.getElementById('tableContainer');
+        tableContainer.innerHTML = `
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="alert alert-danger">
+                            Ошибка загрузки данных: ${error.message}
+                        </div>
+                    </div>
+                </div>
+            `;
+    }
+}
+
+// Show folders/files at the given path
+function showFolders(path, addToHistoryFlag = true) {
+    currentPath = [...path]; // Создаем копию массива
+    currentTableId = null;
+    const folderList = document.getElementById('folderList');
+    const tableContainer = document.getElementById('tableContainer');
+
+    if (!folderList) {
+        console.error('folderList element not found');
+        return;
+    }
+
+    folderList.innerHTML = '';
+    tableContainer.classList.add('d-none');
+
+    if (addToHistoryFlag) {
+        addToHistory({ type: 'folder', path: [...path] });
+    }
+
+    let items = [];
+    if (path.length === 0) {
+        // Root folders
+        items = Object.keys(folderStructure);
+    } else if (path.length === 1) {
+        // Subfolders
+        const mainFolder = path[0];
+        if (folderStructure[mainFolder]) {
+            items = Object.keys(folderStructure[mainFolder]);
+        }
+    } else if (path.length === 2) {
+        // Files
+        const mainFolder = path[0];
+        const subFolder = path[1];
+        if (folderStructure[mainFolder] && folderStructure[mainFolder][subFolder]) {
+            items = folderStructure[mainFolder][subFolder];
+            // Show files as buttons to load tables
+            items.forEach(file => {
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.className = 'list-group-item list-group-item-action';
+                button.textContent = window.i18n?.t('files.' + file.replace('.json', '')) || file;
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showTable(file, true);
+                });
+                folderList.appendChild(button);
+            });
+            updateBreadcrumb();
+            return;
+        }
+    }
+
+    // Show folders
+    items.forEach(item => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'list-group-item list-group-item-action';
+        button.textContent = window.i18n?.t('folders.' + item) || item;
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            showFolders([...path, item], true);
+        });
+        folderList.appendChild(button);
+    });
+    updateBreadcrumb();
+}
+
+// Show table for a file
+function showTable(fileName, addToHistoryFlag = true) {
+    // Не добавляем fileName в currentPath здесь
+    currentTableId = fileName;
+    const folderList = document.getElementById('folderList');
+    const tableContainer = document.getElementById('tableContainer');
+
+    if (!folderList || !tableContainer) {
+        console.error('Required elements not found');
+        return;
+    }
+
+    folderList.innerHTML = '';
+    tableContainer.classList.remove('d-none');
+
+    if (addToHistoryFlag) {
+        addToHistory({ type: 'table', path: [...currentPath], fileName: fileName });
+    }
+
+    // Добавляем fileName в путь только для breadcrumb
+    const tempPath = [...currentPath, fileName];
+    const savedPath = currentPath;
+    currentPath = tempPath;
+    updateBreadcrumb();
+    currentPath = savedPath;
+
+    loadTableData(fileName);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded, initializing...');
+    
+    const initPromise = window.i18n?.ready || Promise.resolve();
+
+    initPromise.then(() => {
+        console.log('i18n ready, showing folders...');
+        
+        // Инициализируем с пустого пути
+        showFolders([], true);
+
+        // Настраиваем кнопки навигации
+        const backBtn = document.getElementById('backBtn');
+        const forwardBtn = document.getElementById('forwardBtn');
+        
+        if (backBtn) {
+            backBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                console.log('Back button clicked');
+                goBack();
+            });
+        } else {
+            console.error('Back button not found');
+        }
+
+        if (forwardBtn) {
+            forwardBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                console.log('Forward button clicked');
+                goForward();
+            });
+        } else {
+            console.error('Forward button not found');
+        }
+
+        // Настраиваем переключатели языка
+        document.querySelectorAll('[data-lang]').forEach((item) => {
+            item.addEventListener('click', (event) => {
+                event.preventDefault();
+                const lang = item.getAttribute('data-lang');
+                console.log('Language changed to:', lang);
+                window.i18n?.setLanguage(lang);
+            });
+        });
+
+        // Слушаем изменения языка
+        window.i18n?.onLanguageChange(() => {
+            console.log('Language changed, reloading...');
+            showFolders(currentPath, false);
+            if (currentTableId) {
+                loadTableData(currentTableId);
+            }
+        });
+    }).catch(error => {
+        console.error('Initialization error:', error);
+    });
+});
+    </script>
+</body>
+</html>
+
+
