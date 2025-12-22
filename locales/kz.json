@@ -45,28 +45,42 @@
     "BP6-Q-PK-TFR": "BP6-Q-PK TFR"
   },
   "files": {
-    "zbp_d08_ocenka": "ZBP D08 Бағалау",
-    "structure_zbp_d06_fact": "ZBP D06 Құрылымы Факт",
-    "structure_zbp_d06_ocenka": "ZBP D06 Құрылымы Бағалау",
-    "structure_zbp_d06_plan": "ZBP D06 Құрылымы Жоспар",
-    "structure_zbp_d06_prognoz": "ZBP D06 Құрылымы Болжам",
-    "bp3-p-pk_zbp_d06_ocenka": "1. ZBP_D06 деректерінің құрылымы Бағалау үшін",
-    "bp3-p-pk_zbp_d06_plan": "2. ZBP_D06 деректерінің құрылымы Жоспар үшін",
-    "bp3-p-pk_zbp_d06_prognoz": "3. ZBP_D06 деректерінің құрылымы Болжам үшін",
-    "zpb_d08": "1. ZBP_D08 деректерінің құрылымы Бағалау үшін",
-    "zbp_d03_fact": "ZBP D03 Факт",
-    "zbp_d03_ocenka": "ZBP D03 Бағалау",
-    "zbp_d03_plan": "ZBP D03 Жоспар",
-    "zbp_d05_ocenka": "ZBP D05 Бағалау",
-    "zbp_d05_plan": "ZBP D05 Жоспар",
-    "zbp_d05_prognoz": "ZBP D05 Болжам",
-    "zbp_d17_fact": "ZBP D17 Факт",
-    "zbp_d17_ocenka": "ZBP D17 Бағалау",
-    "zbp_d17_text": "ZBP D17 Мәтін",
-    "zbp_d15_ocenka": "ZBP D15 Бағалау",
-    "zbp_d15_plan": "ZBP D15 Жоспар",
-    "zbp_d17_fact_period": "ZBP D17 Факт Кезең"
+    "zbp_d08_ocenka": "1. ZBP_D08 деректер құрылымы (Бағалау)",
+
+    "structure_zbp_d06_fact": "1. ZBP_D06 деректер құрылымы (Нақты)",
+    "structure_zbp_d06_ocenka": "2. ZBP_D06 деректер құрылымы (Бағалау)",
+    "structure_zbp_d06_plan": "3. ZBP_D06 деректер құрылымы (Жоспар)",
+    "structure_zbp_d06_prognoz": "ZBP_D06 деректер құрылымы (Болжам)",
+
+    "bp3-p-pk_zbp_d06_ocenka": "1. ZBP_D06 деректер құрылымы (Бағалау)",
+    "bp3-p-pk_zbp_d06_plan": "2. ZBP_D06 деректер құрылымы (Жоспар)",
+    "bp3-p-pk_zbp_d06_prognoz": "3. ZBP_D06 деректер құрылымы (Болжам)",
+
+    "zpb_d08": "1. ZBP_D08 деректер құрылымы (Бағалау)",
+
+    "zbp_d03_fact": "ZBP_D03 (Нақты)",
+    "zbp_d03_ocenka": "ZBP_D03 (Бағалау)",
+    "zbp_d03_plan": "ZBP_D03 (Жоспар)",
+
+    "zbp_d05_ocenka": "ZBP_D05 (Бағалау)",
+    "zbp_d05_plan": "ZBP_D05 (Жоспар)",
+    "zbp_d05_prognoz": "ZBP_D05 (Болжам)",
+
+    "bp6-m-pk-zbp_d17_fact": "ZBP_D17 (Нақты)",
+    "bp6-m-pk-zbp_d17_ocenka": "ZBP_D17 (Бағалау)",
+    "bp6-m-pk-zbp_d17_text": "ZBP_D17 (Мәтін)",
+
+    "bp6-q-pk-zbp_d17_fact_period": "ZBP_D17 (Кезең бойынша нақты)",
+    "bp6-q-pk-zbp_d17_ocenka": "ZBP_D17 (Бағалау)",
+    "bp6-q-pk-zbp_d17_text": "ZBP_D17 (Мәтін)",
+
+    "zbp_d17_fact": "ZBP_D17 (Нақты)",
+    "zbp_d17_ocenka": "ZBP_D17 (Бағалау)",
+
+    "zbp_d15_ocenka": "ZBP_D15 (Бағалау)",
+    "zbp_d15_plan": "ZBP_D15 (Жоспар)"
   },
+
   "footer": {
     "rights": "© Барлық құқықтар қорғалған. 2024 Самрук-Казына"
   },

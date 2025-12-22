@@ -2,19 +2,19 @@
 const folderStructure = {
     'BP3_balance': {
         'balance-ispoln': ['zbp_d08_ocenka.json'],
-        'BP3-DZO-balance-dzo': ['structure_zbp_d06_fact.json', 'structure_zbp_d06_ocenka.json', 'structure_zbp_d06_plan.json'],
         'BP3-P-PK-predicted-balance': ['bp3-p-pk_zbp_d06_ocenka.json', 'bp3-p-pk_zbp_d06_plan.json', 'bp3-p-pk_zbp_d06_prognoz.json'],
-        'BP3-Q-PK' : ['zpb_d08.json']
+        'BP3-Q-PK' : ['zpb_d08.json'],
+        'BP3-DZO-balance-dzo': ['structure_zbp_d06_fact.json', 'structure_zbp_d06_ocenka.json', 'structure_zbp_d06_plan.json']
     },
     'BP3_dds': {
         'BP4-DZO-dds': ['zbp_d03_fact.json', 'zbp_d03_ocenka.json', 'zbp_d03_plan.json'],
         'BP4-P-PK-predicted-dds': ['zbp_d05_ocenka.json', 'zbp_d05_plan.json', 'zbp_d05_prognoz.json'],
-        'BP4-Q-PK-dds-ispoln': ['zbp_d03_ocenka.json']
+        'BP4-Q-PK-dds-ispoln': ['bp4-q-pk-zbp_d03_ocenka.json']
     },
     'BP6_TFR': {
-        'BP6-M-PK-tfr-monthly': ['zbp_d17_fact.json', 'zbp_d17_ocenka.json', 'zbp_d17_text.json'],
-        'BP6-P-PK_prognoz-tfr': ['zbp_d06_prognoz.json', 'zbp_d15_ocenka.json', 'zbp_d15_plan.json'],
-        'BP6-Q-PK-TFR': ['zbp_d17_fact_period.json', 'zbp_d17_ocenka.json', 'zbp_d17_text.json'],
+        'BP6-M-PK-tfr-monthly': ['bp6-m-pk-zbp_d17_fact.json', 'bp6-m-pk-zbp_d17_ocenka.json', 'bp6-m-pk-zbp_d17_text.json'],
+        'BP6-P-PK_prognoz-tfr': ['bp6-p-pk-zbp_d06_prognoz.json', 'bp6-p-pk-zbp_d15_ocenka.json', 'bp6-p-pk-zbp_d15_plan.json'],
+        'BP6-Q-PK-TFR': ['bp6-q-pk-zbp_d17_fact_period.json', 'bp6-q-pk-zbp_d17_ocenka.json', 'bp6-q-pk-zbp_d17_text.json'],
         'BP-6-DZO-TFR': ['zbp_d17_fact.json', 'zbp_d17_ocenka.json', 'zbp_d15_plan.json']
     }
 };
