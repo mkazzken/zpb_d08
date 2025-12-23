@@ -1,51 +1,26 @@
 // Folder structure
 const folderStructure = {
-    'BP3_balance': {
-        'balance-ispoln': [
-            'zbp_d08_ocenka.json'
-        ],
-        'BP3-P-PK-predicted-balance': [
-            'bp3-p-pk_zbp_d06_ocenka.json'
-        ],
-        'BP3-Q-PK': [
-            'zpb_d08.json'
-        ],
-        'BP3-DZO-balance-dzo': [
-            'structure_zbp_d06_fact.json'
-        ]
-    },
+    'BP3_balance': [
+        'Баланс исполнения',
+        'bp3-p-pk',
+        'bp3-q-pk',
+        'bp3-dzo'
+    ],
 
-    'BP3_dds': {
-        
-        'BP4-P-PK-predicted-dds': [
-            'zbp_d05_ocenka.json'
-        ],
-        'BP4-Q-PK-dds-ispoln': [
-            'bp4-q-pk-zbp_d03_ocenka.json'
-        ],
-        'BP4-DZO-dds': [
-            'zbp_d03_fact.json'
-        ]
-        
-        
-    },
+    'BP4_dds': [
+        'bp4-p-pk',
+        'bp4-q-pk',
+        'bp4-dzo'
+    ],
 
-    'BP6_TFR': {
-
-        'BP6-P-PK_prognoz-tfr': [
-            'bp6-p-pk-zbp_d06_prognoz.json'
-        ],
-        'BP6-Q-PK-TFR': [
-            'bp6-q-pk-zbp_d17_fact_period.json'
-        ],
-        'BP6-M-PK-tfr-monthly': [
-            'bp6-m-pk-zbp_d17_fact.json'
-        ],
-        'BP6-DZO-TFR': [
-            'zbp_d15_plan.json'
-        ]
-    }
+    'BP6_TFR': [
+        'bp6-p-pk',
+        'bp6-q-pk',
+        'bp6-m-pk',
+        'bp6-dzo'
+    ]
 };
+
 
 
 let currentPath = [];
@@ -122,10 +97,18 @@ function updateBreadcrumb() {
 
     currentPath.forEach((part, index) => {
         const isLast = index === currentPath.length - 1;
-        if (isLast) {
-            breadcrumbHTML += `<li class="breadcrumb-item active" aria-current="page">${part}</li>`;
+        let translatedPart;
+        if (isLast && currentTableId) {
+            // This is a file
+            translatedPart = window.i18n?.t('files.' + part) || part;
         } else {
-            breadcrumbHTML += `<li class="breadcrumb-item"><a href="#" data-path-index="${index}">${part}</a></li>`;
+            // This is a folder
+            translatedPart = window.i18n?.t('folders.' + part) || part;
+        }
+        if (isLast) {
+            breadcrumbHTML += `<li class="breadcrumb-item active" aria-current="page">${translatedPart}</li>`;
+        } else {
+            breadcrumbHTML += `<li class="breadcrumb-item"><a href="#" data-path-index="${index}">${translatedPart}</a></li>`;
         }
     });
 
@@ -151,10 +134,8 @@ function updateBreadcrumb() {
 
 function findPath(fileName) {
     for (const main in folderStructure) {
-        for (const sub in folderStructure[main]) {
-            if (folderStructure[main][sub].includes(fileName)) {
-                return `${main}/${sub}`;
-            }
+        if (folderStructure[main].includes(fileName)) {
+            return main;
         }
     }
     return '';
@@ -163,28 +144,27 @@ function findPath(fileName) {
 // Load JSON data for a table from embedded data (no HTTP / fetch)
 function loadTableData(fileName) {
     const lang = getLang();
-    let path = currentPath.slice(0, -1).join('/');
-    if (path.split('/').length < 2) {
-        path = findPath(fileName);
+    let mainFolder = currentPath[0]; // Теперь path - это просто mainFolder
+    if (!mainFolder) {
+        mainFolder = findPath(fileName);
     }
-    console.log('Loading', fileName, 'path:', path, 'currentPath:', currentPath);
+    console.log('Loading', fileName, 'mainFolder:', mainFolder, 'currentPath:', currentPath);
 
     try {
         if (!window.EMBEDDED_DATA) {
             throw new Error('EMBEDDED_DATA is not available');
         }
 
-        const [mainFolder, subFolder] = path.split('/');
-        if (!mainFolder || !subFolder) {
-            throw new Error(`Некорректный путь для данных: "${path}"`);
+        if (!mainFolder) {
+            throw new Error(`Не найден раздел для файла: "${fileName}"`);
         }
 
         const data =
-            window.EMBEDDED_DATA?.[lang]?.[mainFolder]?.[subFolder]?.[fileName];
+            window.EMBEDDED_DATA?.[lang]?.[mainFolder]?.[fileName];
 
         if (!data) {
             throw new Error(
-                `Данные не найдены для ${lang}/${mainFolder}/${subFolder}/${fileName}`
+                `Данные не найдены для ${lang}/${mainFolder}/${fileName}`
             );
         }
 
@@ -284,23 +264,16 @@ function showFolders(path, addToHistoryFlag = true) {
         // Root folders
         items = Object.keys(folderStructure);
     } else if (path.length === 1) {
-        // Subfolders
+        // Files in the main folder
         const mainFolder = path[0];
         if (folderStructure[mainFolder]) {
-            items = Object.keys(folderStructure[mainFolder]);
-        }
-    } else if (path.length === 2) {
-        // Files
-        const mainFolder = path[0];
-        const subFolder = path[1];
-        if (folderStructure[mainFolder] && folderStructure[mainFolder][subFolder]) {
-            items = folderStructure[mainFolder][subFolder];
+            items = folderStructure[mainFolder];
             // Show files as buttons to load tables
             items.forEach(file => {
                 const button = document.createElement('button');
                 button.type = 'button';
                 button.className = 'list-group-item list-group-item-action';
-                button.textContent = window.i18n?.t('files.' + file.replace('.json', '')) || file;
+                button.textContent = window.i18n?.t('files.' + file) || file;
                 button.addEventListener('click', (e) => {
                     e.preventDefault();
                     showTable(file, true);

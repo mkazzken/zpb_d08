@@ -1,0 +1,98 @@
+[
+  {
+    "field": "ZBPDATYPE",
+    "description": "Дерек түрі",
+    "value_example": "DT_3 - Бағалау",
+    "notes": "DT_3 - Бағалау"
+  },
+  {
+    "field": "ZBPMETD",
+    "description": "Жоспарлау әдісі",
+    "value_example": "#",
+    "notes": "\"#\" мәні тағайындалмаған."
+  },
+  {
+    "field": "ZPORTFCOM",
+    "description": "Компаниялар портфелі",
+    "value_example": "DO*",
+    "notes": "\"Болжамды Баланс\" нысанына екінші деңгейдегі DO* компаниялары деректерді енгізеді. Компаниялар анықтамалығынан алынады."
+  },
+  {
+    "field": "ZBPVERS",
+    "description": "Деректер нұсқасы",
+    "value_example": "ACTUAL",
+    "notes": "Жұмыс нұсқасы тұрақтысы: ACTUAL"
+  },
+  {
+    "field": "ZBPPER",
+    "description": "Есептілік кезең",
+    "value_example": "#",
+    "notes": "\"#\" мәні тағайындалмаған."
+  },
+  {
+    "field": "ZBPTIME",
+    "description": "Кезең (тоқсан)",
+    "value_example": "03.2025",
+    "notes": "Есептілік кезең логика бойынша толтырылады: аа.жжжж. Бұл нысанда орындау деректері тоқсандар бойынша енгізіледі. Мысалы: 03.2025; 06.2025; 09.2025; 12.2025"
+  },
+  {
+    "field": "ZBPACCT",
+    "description": "БА шоты",
+    "value_example": "(Анықтамалықтан)",
+    "notes": "Кестедегі барлық мәндерді алу: /BIC/HZBPACCT. HIEID BBD: N15H4WKK43Q7QOBO8FGCHRPTE; HIEID BBQ: U97IJQ942M42OZAYLZX47RV1I; HIEID BBP: U97IJQ942M42OZAYLZX47RV1I"
+  },
+  {
+    "field": "ZBPBUSACT",
+    "description": "Бизнес-белсенділік",
+    "value_example": "CONS",
+    "notes": "Бизнес қызметі: CONS"
+  },
+  {
+    "field": "ZBPSU",
+    "description": "Есепке алудың стандартты бірлігі",
+    "value_example": "PC",
+    "notes": "Қордың құрылымдық бөлімі: тұрақты PC"
+  },
+  {
+    "field": "ZBPSOURCE",
+    "description": "Деректер көзі",
+    "value_example": "MANUAL",
+    "notes": "Деректер көзі: тұрақты MANUAL"
+  },
+  {
+    "field": "ZBPPOLIT",
+    "description": "Біріктіру саясаты",
+    "value_example": "POL_PC",
+    "notes": "Саясат түрі: POL_PC немесе POL_FU"
+  },
+  {
+    "field": "ZBPREP",
+    "description": "Есеп беру белгісі",
+    "value_example": "QUARTERLY",
+    "notes": "Есеп беру белгісі: QUARTERLY"
+  },
+  {
+    "field": "ZBPCUR",
+    "description": "Валюта",
+    "value_example": "KZT",
+    "notes": "Валюта: KZT"
+  },
+  {
+    "field": "ZBPTTYPE",
+    "description": "Транзакция түрі",
+    "value_example": "#",
+    "notes": "\"#\" мәні тағайындалмаған."
+  },
+  {
+    "field": "ZBPTXT1",
+    "description": "Жазба мәтіні",
+    "value_example": "#",
+    "notes": "\"#\" мәні тағайындалмаған."
+  },
+  {
+    "field": "ZBPSUM",
+    "description": "Сома",
+    "value_example": "(Сандық мән)",
+    "notes": "Сома"
+  }
+]

@@ -1,0 +1,104 @@
+[
+  {
+    "field": "ZBPDATYPE",
+    "description": "Дерек түрі",
+    "value_example": "DT_01 - Жоспар",
+    "notes": "DT_01 - Жоспар"
+  },
+  {
+    "field": "ZBPMETD",
+    "description": "Жоспарлау әдісі",
+    "value_example": "1M - Негізгі жоспар",
+    "notes": "1M - Негізгі жоспар; 2M-8M - Балама жоспар"
+  },
+  {
+    "field": "ZPORTFCOM",
+    "description": "Компаниялар портфелі",
+    "value_example": "DO*",
+    "notes": "\"Болжамды Баланс\" нысанына екінші деңгейдегі DO* компаниялары деректерді енгізеді. Компаниялар анықтамалығынан алынады."
+  },
+  {
+    "field": "ZBPVERS",
+    "description": "Деректер нұсқасы",
+    "value_example": "DRAFT",
+    "notes": "Жұмыс нұсқасы тұрақтысы: DRAFT"
+  },
+  {
+    "field": "ZBPPER",
+    "description": "Жоспарлы бесжылдық",
+    "value_example": "2025-2029",
+    "notes": "Жоспарлы бесжылдық логика бойынша толтырылады: ағымдағы есептілік кезең жылы - +4 жыл (жжжж-(жжжж+4ж)). Мысалы: 2025-2029"
+  },
+  {
+    "field": "ZBPTIME",
+    "description": "Кезең (жыл/ай)",
+    "value_example": "202501",
+    "notes": "\"Жоспар\" деректері айлар бойынша бөлініспен. Мысалы: 202501; 202512"
+  },
+  {
+    "field": "ZBPACCT",
+    "description": "Шот жоспарының ID",
+    "value_example": "(ZBPSTFC-тен)",
+    "notes": "Шот жоспарының ID мақалалар ZBPSTFC-тен көшіріледі, деректерді нысанға сақтау кезінде"
+  },
+  {
+    "field": "ZBPFACT",
+    "description": "Факторлардың ID",
+    "value_example": "000F*, 000P*",
+    "notes": "Факторлардың ID 000F*, 000P* мақалалары ZBPSTFC-тен көшіріледі, деректерді нысанға сақтау кезінде"
+  },
+  {
+    "field": "ZBPSTFC",
+    "description": "Қаржылық мақалалар",
+    "value_example": "(DSO ZBP_D33-тен)",
+    "notes": "Нысан қалыптастыру кезінде, бесжылдыққа және ПК-ға сәйкес мақалалар DSO ZBP_D33-тен алынады (ZBP_D33 парағын қараңыз)"
+  },
+  {
+    "field": "ZBPSOURCE",
+    "description": "Деректер көзі",
+    "value_example": "MANUAL",
+    "notes": "Деректер көзі: тұрақты MANUAL"
+  },
+  {
+    "field": "ZBPPOLIT",
+    "description": "Біріктіру саясаты",
+    "value_example": "POL_FU",
+    "notes": "Саясат түрі: барлық компаниялар үшін POL_FU, DO0004 Кегоктан басқа. DO0004 Кегок үшін - POL_PC"
+  },
+  {
+    "field": "ZBPREP",
+    "description": "Есеп беру белгісі",
+    "value_example": "PLANNING",
+    "notes": "Есеп беру белгісі: PLANNING"
+  },
+  {
+    "field": "ZBPCUR",
+    "description": "Валюта",
+    "value_example": "#",
+    "notes": "\"#\" мәні тағайындалмаған."
+  },
+  {
+    "field": "ZBPTTYPE",
+    "description": "Транзакция түрі",
+    "value_example": "#",
+    "notes": "\"#\" мәні тағайындалмаған."
+  },
+  {
+    "field": "ZBPTXT1",
+    "description": "Жазба мәтіні",
+    "value_example": "#",
+    "notes": "\"#\" мәні тағайындалмаған."
+  },
+  {
+    "field": "ZBPSUM1",
+    "description": "Сома 1",
+    "value_example": "(Сандық мән)",
+    "notes": "Сома"
+  },
+  {
+    "field": "ZBPSUM7",
+    "description": "Сома 7",
+    "value_example": "(ZBPSUM1-ден көшірілген)",
+    "notes": "ZBPSUM1-ден сомаларды көшіру керек"
+  }
+]

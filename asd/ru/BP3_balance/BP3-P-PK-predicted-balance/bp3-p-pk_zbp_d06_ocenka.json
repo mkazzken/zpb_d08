@@ -1,0 +1,98 @@
+[
+  {
+    "field": "ZBPDATYPE",
+    "description": "Тип данных",
+    "value_example": "DT_3 — Оценка (/BIC/MZBPDATYPE)",
+    "notes": ""
+  },
+  {
+    "field": "ZBPMETD",
+    "description": "Метод планирования",
+    "value_example": "1M — Базовый план; 2M–8M — Альтернативные планы (/BIC/MZBPMETD)",
+    "notes": ""
+  },
+  {
+    "field": "ZPORTFCOM",
+    "description": "Компания второго уровня, заполняющая форму «Прогнозный баланс»",
+    "value_example": "Справочник компаний (лист ZPORTFCOM)",
+    "notes": "Заполняется компаниями DO*"
+  },
+  {
+    "field": "ZBPVERS",
+    "description": "Версия данных",
+    "value_example": "DRAFT",
+    "notes": "Рабочая версия (константа)"
+  },
+  {
+    "field": "ZBPPER",
+    "description": "Плановый период (пятилетка)",
+    "value_example": "гггг–(гггг+4), например 2025–2029",
+    "notes": ""
+  },
+  {
+    "field": "ZBPTIME",
+    "description": "Отчётный период",
+    "value_example": "мм.гггг (для данных «Оценка» всегда 12.гггг, например 12.2024)",
+    "notes": ""
+  },
+  {
+    "field": "ZBPACCT",
+    "description": "Счёт",
+    "value_example": "Из /BIC/HZBPACCT; HIEID BBD/BBQ/BBP: RF7APUVPRMZAOLZG694AXEIAP",
+    "notes": ""
+  },
+  {
+    "field": "ZBPBUSACT",
+    "description": "Business Activity",
+    "value_example": "#",
+    "notes": "Значение не присвоено"
+  },
+  {
+    "field": "ZBPSU",
+    "description": "Структурное подразделение Фонда",
+    "value_example": "PC",
+    "notes": "Константа"
+  },
+  {
+    "field": "ZBPSOURCE",
+    "description": "Источник данных",
+    "value_example": "MANUAL",
+    "notes": "Константа"
+  },
+  {
+    "field": "ZBPPOLIT",
+    "description": "Тип политики",
+    "value_example": "POL_FU (для всех компаний, кроме DO0004 Кегок); POL_PC — для DO0004 Кегок",
+    "notes": ""
+  },
+  {
+    "field": "ZBPREP",
+    "description": "Признак отчётности",
+    "value_example": "PLANNING",
+    "notes": ""
+  },
+  {
+    "field": "ZBPCUR",
+    "description": "Валюта",
+    "value_example": "KZT",
+    "notes": ""
+  },
+  {
+    "field": "ZBPTTYPE",
+    "description": "Тип суммы",
+    "value_example": "#",
+    "notes": "Значение не присвоено"
+  },
+  {
+    "field": "ZBPTXT1",
+    "description": "Описание",
+    "value_example": "#",
+    "notes": "Значение не присвоено"
+  },
+  {
+    "field": "ZBPSUM",
+    "description": "Сумма",
+    "value_example": "",
+    "notes": ""
+  }
+]

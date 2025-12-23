@@ -1,0 +1,98 @@
+[
+  {
+    "field": "ZBPDATYPE",
+    "description": "Дерек түрі",
+    "value_example": "DT_3 - Бағалау",
+    "notes": "DT_3 - Бағалау"
+  },
+  {
+    "field": "ZBPMETD",
+    "description": "Жоспарлау әдісі",
+    "value_example": "1M - Негізгі жоспар",
+    "notes": "1M - Негізгі жоспар; 2M-8M - Балама жоспар"
+  },
+  {
+    "field": "ZPORTFCOM",
+    "description": "Компаниялар портфелі",
+    "value_example": "DO*",
+    "notes": "\"Болжамды Баланс\" нысанына екінші деңгейдегі DO* компаниялары деректерді енгізеді. Компаниялар анықтамалығынан алынады."
+  },
+  {
+    "field": "ZBPVERS",
+    "description": "Деректер нұсқасы",
+    "value_example": "ACTUAL",
+    "notes": "Нұсқа: ACTUAL"
+  },
+  {
+    "field": "ZBPPER",
+    "description": "Есептілік кезең",
+    "value_example": "#",
+    "notes": "\"#\" мәні тағайындалмаған."
+  },
+  {
+    "field": "ZBPTIME",
+    "description": "Кезең (ай/жыл)",
+    "value_example": "аа.жжжж",
+    "notes": "\"Бағалау\" үшін есептілік кезең логика бойынша толтырылады: аа.жжжж"
+  },
+  {
+    "field": "ZBPACCT",
+    "description": "БА шоты",
+    "value_example": "(Анықтамалықтан)",
+    "notes": "Кестедегі барлық мәндерді алу: /BIC/HZBPACCT. HIEID: RF7APUVPRMZAOLZG694AXEIAP"
+  },
+  {
+    "field": "ZBPBUSACT",
+    "description": "Бизнес-белсенділік",
+    "value_example": "#",
+    "notes": "\"#\" мәні тағайындалмаған."
+  },
+  {
+    "field": "ZBPSU",
+    "description": "Есепке алудың стандартты бірлігі",
+    "value_example": "PC",
+    "notes": "Қордың құрылымдық бөлімі: тұрақты PC"
+  },
+  {
+    "field": "ZBPSOURCE",
+    "description": "Деректер көзі",
+    "value_example": "MANUAL",
+    "notes": "Деректер көзі: тұрақты MANUAL"
+  },
+  {
+    "field": "ZBPPOLIT",
+    "description": "Біріктіру саясаты",
+    "value_example": "POL_FU",
+    "notes": "Саясат түрі: барлық компаниялар үшін POL_FU. DO0004 Кегок және тағы басқалар үшін - POL_PC"
+  },
+  {
+    "field": "ZBPREP",
+    "description": "Есеп беру белгісі",
+    "value_example": "QUARTERLY",
+    "notes": "Есеп беру белгісі: QUARTERLY"
+  },
+  {
+    "field": "ZBPCUR",
+    "description": "Валюта",
+    "value_example": "KZT",
+    "notes": "Валюта: KZT"
+  },
+  {
+    "field": "ZBPTTYPE",
+    "description": "Транзакция түрі",
+    "value_example": "#",
+    "notes": "\"#\" мәні тағайындалмаған."
+  },
+  {
+    "field": "ZBPTXT1",
+    "description": "Жазба мәтіні",
+    "value_example": "#",
+    "notes": "\"#\" мәні тағайындалмаған."
+  },
+  {
+    "field": "ZBPSUM",
+    "description": "Сома",
+    "value_example": "(Сандық мән)",
+    "notes": "Сома"
+  }
+]

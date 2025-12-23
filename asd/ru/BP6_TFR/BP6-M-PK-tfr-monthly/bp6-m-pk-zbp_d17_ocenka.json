@@ -1,0 +1,116 @@
+[
+  {
+    "field": "ZBPDATYPE",
+    "description": "Тип данных",
+    "value_example": "DT_03 - Оценка",
+    "notes": "DT_03 - Оценка"
+  },
+  {
+    "field": "ZBPMETD",
+    "description": "Метод планирования",
+    "value_example": "#",
+    "notes": "Значение \"#\" не присвоено."
+  },
+  {
+    "field": "ZPORTFCOM",
+    "description": "Портфель компаний",
+    "value_example": "DO*",
+    "notes": "В данную форму \"ТФР исполнение\" данные заносят компании второго уровня DO*, справочник по компанию приложила (смотреть лист ZPORTFCOM)"
+  },
+  {
+    "field": "ZBPVERS",
+    "description": "Версия данных",
+    "value_example": "ACTUAL",
+    "notes": "Рабочая версия константа: ACTUAL"
+  },
+  {
+    "field": "ZBPFKPI",
+    "description": "Финансовый KPI фактор",
+    "value_example": "#",
+    "notes": "Значение \"#\" не присвоено."
+  },
+  {
+    "field": "ZBPKPI",
+    "description": "KPI",
+    "value_example": "#",
+    "notes": "Значение \"#\" не присвоено."
+  },
+  {
+    "field": "ZBPPER",
+    "description": "Отчетный период",
+    "value_example": "#",
+    "notes": "Значение \"#\" не присвоено."
+  },
+  {
+    "field": "ZBPTIME",
+    "description": "Период",
+    "value_example": "ггггмм",
+    "notes": "Отчетный период заполняется по логике: ггггмм"
+  },
+  {
+    "field": "ZBPACCT",
+    "description": "ID плана счетов",
+    "value_example": "(Из ZBPSTFC)",
+    "notes": "ID плана счетов копируется из финансовых статей ZBPSTFC, при сохранении данных в форме"
+  },
+  {
+    "field": "ZBPFACT",
+    "description": "ID факторы",
+    "value_example": "000F*, 000P*",
+    "notes": "ID факторы копируется из 000F*, 000P* статей ZBPSTFC, при сохранении данных в форме"
+  },
+  {
+    "field": "ZBPSTFC",
+    "description": "Финансовые статьи",
+    "value_example": "(Из DSO ZBP_D33)",
+    "notes": "При формировании формы, соответствующие статьи к пятилетке и ПК подтягивается из DSO ZBP_D33 (смотреть лист ZBP_D33)"
+  },
+  {
+    "field": "ZBPSOURCE",
+    "description": "Источник данных",
+    "value_example": "MANUAL",
+    "notes": "Источник данных: константа MANUAL"
+  },
+  {
+    "field": "ZBPPOLIT",
+    "description": "Политика консолидации",
+    "value_example": "POL_FU",
+    "notes": "Тип политики: для всех компании POL_FU, кроме DO0004 Кегок. Для DO0004 Кегок - POL_PC"
+  },
+  {
+    "field": "ZBPREP",
+    "description": "Признак отчетности",
+    "value_example": "MONTHLY",
+    "notes": "Признак отчетности: MONTHLY"
+  },
+  {
+    "field": "ZBPCUR",
+    "description": "Валюта",
+    "value_example": "#",
+    "notes": "Значение \"#\" не присвоено."
+  },
+  {
+    "field": "ZBPTTYPE",
+    "description": "Тип транзакции",
+    "value_example": "#",
+    "notes": "Значение \"#\" не присвоено."
+  },
+  {
+    "field": "ZBPTXT1",
+    "description": "Текст проводки",
+    "value_example": "#",
+    "notes": "Значение \"#\" не присвоено."
+  },
+  {
+    "field": "ZBPSUM1",
+    "description": "Сумма 1",
+    "value_example": "(Числовое значение)",
+    "notes": "Сумма"
+  },
+  {
+    "field": "ZBPSUM7",
+    "description": "Сумма 7",
+    "value_example": "(Скопировано из ZBPSUM1)",
+    "notes": "Нужно скопировать суммы из ZBPSUM1"
+  }
+]

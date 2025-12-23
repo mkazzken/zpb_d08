@@ -1,0 +1,98 @@
+[
+  {
+    "field": "ZBPDATYPE",
+    "description": "Тип данных",
+    "value_example": "DT_3 - Оценка",
+    "notes": "DT_3 - Оценка"
+  },
+  {
+    "field": "ZBPMETD",
+    "description": "Метод планирования",
+    "value_example": "1M - Базовый план",
+    "notes": "1M - Базовый план; 2M-8M - Альтернативный план"
+  },
+  {
+    "field": "ZPORTFCOM",
+    "description": "Портфель компаний",
+    "value_example": "DO*",
+    "notes": "В форму \"прогнозный Баланс\" данные заносят компании второго уровня DO*. Значения из справочника."
+  },
+  {
+    "field": "ZBPVERS",
+    "description": "Версия данных",
+    "value_example": "ACTUAL",
+    "notes": "Рабочая версия, константа: ACTUAL"
+  },
+  {
+    "field": "ZBPPER",
+    "description": "Отчетный период",
+    "value_example": "#",
+    "notes": "Значение \"#\" не присвоено."
+  },
+  {
+    "field": "ZBPTIME",
+    "description": "Период (квартал)",
+    "value_example": "03.2025",
+    "notes": "Заполняется по логике: мм.гггг. В данной форме исполнение данные заносят на квартала. Например: 03.2025; 06.2025; 09.2025; 12.2025"
+  },
+  {
+    "field": "ZBPACCT",
+    "description": "Счет ГК",
+    "value_example": "(Из справочника)",
+    "notes": "Брать все значения из таблицы: /BIC/HZBPACCT. HIEID: RF7APUVPRMZAOLZG694AXEIAP"
+  },
+  {
+    "field": "ZBPBUSACT",
+    "description": "Бизнес-активность",
+    "value_example": "#",
+    "notes": "Значение \"#\" не присвоено."
+  },
+  {
+    "field": "ZBPSU",
+    "description": "Стандартная единица учета",
+    "value_example": "PC",
+    "notes": "Структурное подразделение Фонда: константа PC"
+  },
+  {
+    "field": "ZBPSOURCE",
+    "description": "Источник данных",
+    "value_example": "MANUAL",
+    "notes": "Источник данных: константа MANUAL"
+  },
+  {
+    "field": "ZBPPOLIT",
+    "description": "Политика консолидации",
+    "value_example": "POL_PC",
+    "notes": "Тип политики: POL_PC или POL_FU"
+  },
+  {
+    "field": "ZBPREP",
+    "description": "Признак отчетности",
+    "value_example": "QUARTERLY",
+    "notes": "Признак отчетности: QUARTERLY"
+  },
+  {
+    "field": "ZBPCUR",
+    "description": "Валюта",
+    "value_example": "KZT",
+    "notes": "Валюта: KZT"
+  },
+  {
+    "field": "ZBPTTYPE",
+    "description": "Тип транзакции",
+    "value_example": "#",
+    "notes": "Значение \"#\" не присвоено."
+  },
+  {
+    "field": "ZBPTXT1",
+    "description": "Текст проводки",
+    "value_example": "#",
+    "notes": "Значение \"#\" не присвоено."
+  },
+  {
+    "field": "ZBPSUM",
+    "description": "Сумма",
+    "value_example": "(Числовое значение)",
+    "notes": "Сумма"
+  }
+]
