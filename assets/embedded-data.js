@@ -43,7 +43,12 @@ window.EMBEDDED_DATA = {
           "description": "Сумма",
           "value_example": "",
           "notes": ""
+        },
+        {
+          "link1": "www.example.com",
+          "link2": "www.example2.com"
         }
+
       ],
       "bp3-dzo": [
         {
